@@ -15,8 +15,8 @@ class JConfig {
 	var $gzip = '0';
 	var $error_reporting = '-1';
 	var $xmlrpc_server = '0';
-	var $log_path = '/var/www/karlson/logs';
-	var $tmp_path = '/var/www/karlson/domains/karlson-bl.in/public_html/tmp';
+	var $log_path = '';
+	var $tmp_path = '';
 	var $live_site = '';
 	var $force_ssl = '0';
 	var $offset = '3';
@@ -32,9 +32,9 @@ class JConfig {
 	var $ftp_root = '';
 	var $dbtype = 'mysql';
 	var $host = 'localhost';
-	var $user = 'root';
-	var $db = 'mik';
-	var $dbprefix = 'jos_';
+	var $user = '';
+	var $db = '';
+	var $dbprefix = '';
 	var $mailer = 'mail';
 	var $mailfrom = 'admin@karlson.in';
 	var $fromname = 'Малыш и Карлсон BL';
@@ -49,7 +49,7 @@ class JConfig {
 	var $MetaTitle = '1';
 	var $lifetime = '60';
 	var $session_handler = 'database';
-	var $password = 'SwapAndSystem';
+	var $password = '';
 	var $sitename = 'Малыш и Карлсон BL';
 	var $MetaDesc = 'boylove, bylovers';
 	var $MetaKeys = 'boylove';
