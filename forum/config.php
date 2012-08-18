@@ -4,10 +4,10 @@
 $dbms = 'mysqli';
 $dbhost = 'localhost';
 $dbport = '';
-$dbname = 'mik';
-$dbuser = 'root';
-$dbpasswd = 'SwapAndSystem';
-$table_prefix = 'phpbb_';
+$dbname = '';
+$dbuser = '';
+$dbpasswd = '';
+$table_prefix = '';
 $acm_type = 'file';
 $load_extensions = '';
 
