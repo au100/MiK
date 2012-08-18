@@ -1,0 +1,31 @@
+<form method="post" action="{RATING_FORM_URL}">
+<!-- IF USE_BOARD_HEADER -->
+<table id="ratings">
+<tr>
+<td class="row3" colspan="2">{L_MP_RATE_THIS_PAGE}</td>
+</tr>
+
+<tr><td align="right"><input type="radio" name="rating" <!-- IF USER_RATING == '0' -->checked="checked" <!-- ENDIF -->value="0"></td><td><img src="images/mypage_ratings/{RATE_IMG_0}" /></td></tr>
+<tr><td align="right"><input type="radio" name="rating" <!-- IF USER_RATING == '1' -->checked="checked" <!-- ENDIF -->value="1"></td><td><img src="images/mypage_ratings/{RATE_IMG_1}" /></td></tr>
+<tr><td align="right"><input type="radio" name="rating" <!-- IF USER_RATING == '2' -->checked="checked" <!-- ENDIF -->value="2"></td><td><img src="images/mypage_ratings/{RATE_IMG_2}" /></td></tr>
+<tr><td align="right"><input type="radio" name="rating" <!-- IF USER_RATING == '3' -->checked="checked" <!-- ENDIF -->value="3"></td><td><img src="images/mypage_ratings/{RATE_IMG_3}" /></td></tr>
+<tr><td align="right"><input type="radio" name="rating" <!-- IF USER_RATING == '4' -->checked="checked" <!-- ENDIF -->value="4"></td><td><img src="images/mypage_ratings/{RATE_IMG_4}" /></td></tr>
+<tr><td align="right"><input type="radio" name="rating" <!-- IF USER_RATING == '5' -->checked="checked" <!-- ENDIF -->value="5"></td><td><img src="images/mypage_ratings/{RATE_IMG_5}" /></td></tr>
+<tr><td align="center" colspan="2"><input type="submit" name="submit" value="Submit" class="button1" /></td></tr>
+	
+</table>
+
+<!-- ELSE -->
+<div id="ratings">
+<h3>{L_MP_RATE_THIS_PAGE}</h3>
+
+	<input type="radio" name="rating" <!-- IF USER_RATING == '0' -->checked="checked" <!-- ENDIF -->value="0"> <img src="images/mypage_ratings/{RATE_IMG_0}" /><br />
+	<input type="radio" name="rating" <!-- IF USER_RATING == '1' -->checked="checked" <!-- ENDIF -->value="1"> <img src="images/mypage_ratings/{RATE_IMG_1}" /><br />
+	<input type="radio" name="rating" <!-- IF USER_RATING == '2' -->checked="checked" <!-- ENDIF -->value="2"> <img src="images/mypage_ratings/{RATE_IMG_2}" /><br />
+	<input type="radio" name="rating" <!-- IF USER_RATING == '3' -->checked="checked" <!-- ENDIF -->value="3"> <img src="images/mypage_ratings/{RATE_IMG_3}" /><br />
+	<input type="radio" name="rating" <!-- IF USER_RATING == '4' -->checked="checked" <!-- ENDIF -->value="4"> <img src="images/mypage_ratings/{RATE_IMG_4}" /><br />
+	<input type="radio" name="rating" <!-- IF USER_RATING == '5' -->checked="checked" <!-- ENDIF -->value="5"> <img src="images/mypage_ratings/{RATE_IMG_5}" /><br />
+	<input type="submit" name="submit" value="Submit" class="button1" />
+
+<!-- ENDIF -->
+</form>

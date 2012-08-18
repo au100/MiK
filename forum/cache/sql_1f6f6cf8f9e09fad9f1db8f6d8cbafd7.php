@@ -1,0 +1,5 @@
+<?php exit; ?>
+1344898558
+SELECT * FROM phpbb_bbcodes WHERE bbcode_id = 34
+853
+a:1:{i:0;a:15:{s:9:"bbcode_id";s:2:"34";s:10:"bbcode_tag";s:1:"p";s:15:"bbcode_helpline";s:105:"Новый абзац со стандартной красной строкой: [p]Ваш текст[/p]";s:18:"display_on_posting";s:1:"1";s:12:"bbcode_match";s:13:"[p]{TEXT}[/p]";s:10:"bbcode_tpl";s:45:"<span style="margin-left:30px;">{TEXT}</span>";s:16:"first_pass_match";s:21:"!\[p\](.*?)\[/p\]!ies";s:18:"first_pass_replace";s:130:"'[p:$uid]'.str_replace(array("\r\n", '\"', '\'', '(', ')'), array("\n", '"', '&#39;', '&#40;', '&#41;'), trim('${1}')).'[/p:$uid]'";s:17:"second_pass_match";s:29:"!\[p:$uid\](.*?)\[/p:$uid\]!s";s:19:"second_pass_replace";s:43:"<span style="margin-left:30px;">${1}</span>";s:13:"display_on_pm";s:1:"0";s:14:"display_on_sig";s:1:"0";s:7:"abbcode";s:1:"1";s:12:"bbcode_image";s:7:"tab.gif";s:12:"bbcode_order";s:2:"35";}}

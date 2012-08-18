@@ -1,0 +1,77 @@
+<!-- IF USE_BOARD_HEADER -->
+
+	<!-- INCLUDE overall_header.html -->
+	
+
+	<!-- IF COMMENTS_ALLOWED || RATINGS_ALLOWED -->
+		<table width="100%">
+		<tr>
+		
+		<!-- IF COMMENTS_ALLOWED -->
+			<td>{COMMENT_COUNT_STRING} &bull; <a href="{COMMENT_LEAVE_VIEW_URL}" >{L_MP_COMMENT_LEAVE_VIEW_STRING}</a></td>
+		<!-- ENDIF -->
+		
+		<!-- IF RATINGS_ALLOWED -->
+			<td align="right"><img src="{RATING_IMG}" /> {RATE_LINK}</td>
+		<!-- ENDIF -->
+		</tr>
+		</table>
+
+	<!-- ENDIF -->
+	
+	<div style="{MYPAGE_CSS}">
+	{CONTENT}
+	</div>
+	
+	
+	<!-- IF SHOW_COMMENTS && COMMENTS_ALLOWED -->
+		<!-- INCLUDE mypage/view_comments.html -->
+	<!-- ENDIF -->
+	
+	<!-- IF SHOW_RATINGS && RATINGS_ALLOWED -->
+		<!-- INCLUDE mypage/view_ratings.html -->
+	<!-- ENDIF -->
+
+	<!-- IF FOOTER -->
+		<div>
+		{FOOTER}
+		</div>
+	<!-- ENDIF -->
+	
+
+	<!-- INCLUDE overall_footer.html -->
+
+<!-- ELSE -->
+<html>
+<head>
+<title>{MYPAGE_TITLE}</title>
+<body style="{MYPAGE_CSS}" >
+<!-- IF COMMENTS_ALLOWED || RATINGS_ALLOWED -->
+<div>
+<table width="100%">
+<tr><td>
+<!-- IF COMMENTS_ALLOWED -->{COMMENT_COUNT_STRING} &bull; <a href="{COMMENT_LEAVE_VIEW_URL}" >{L_MP_COMMENT_LEAVE_VIEW_STRING}</a><!-- ENDIF -->
+</td><td align="right">
+<!-- IF RATINGS_ALLOWED --><img src="{RATING_IMG}" /> {RATE_LINK}<!-- ENDIF -->
+</td></tr>
+</table>
+</div>
+<!-- ENDIF -->
+<div>
+{CONTENT}
+</div>
+
+<!-- IF SHOW_COMMENTS && COMMENTS_ALLOWED -->
+	<!-- INCLUDE mypage/view_comments.html -->
+<!-- ENDIF -->
+	
+<!-- IF SHOW_RATINGS && RATINGS_ALLOWED -->
+	<!-- INCLUDE mypage/view_ratings.html -->
+<!-- ENDIF -->
+
+<!-- IF FOOTER --><div>{FOOTER}</div><!-- ENDIF -->
+
+
+</body>
+</html>
+<!-- ENDIF -->

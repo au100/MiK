@@ -1,0 +1,79 @@
+<!-- IF USE_BOARD_HEADER -->
+
+	<!-- INCLUDE overall_header.html -->
+	
+	<!-- IF COMMENTS_ALLOWED || RATINGS_ALLOWED -->
+		<div class="post bg2">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		
+		<!-- IF RATINGS_ALLOWED -->
+			<ul class="linklist rightside"><li><img src="{RATING_IMG}" /> {RATE_LINK}</li></ul>
+		<!-- ENDIF -->
+		
+		<!-- IF COMMENTS_ALLOWED -->
+			<ul class="linklist leftside"><li>{COMMENT_COUNT_STRING} &bull; <a href="{COMMENT_LEAVE_VIEW_URL}" >{L_MP_COMMENT_LEAVE_VIEW_STRING}</a></li></ul>
+		<!-- ENDIF -->
+		
+		<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<!-- ENDIF -->
+	
+	<div style="{MYPAGE_CSS}" class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	{CONTENT}
+	<span class="corners-bottom"><span></span></span></div>
+	</div>
+	
+	
+	<!-- IF SHOW_COMMENTS && COMMENTS_ALLOWED -->
+		<!-- INCLUDE mypage/view_comments.html -->
+	<!-- ENDIF -->
+	
+	<!-- IF SHOW_RATINGS && RATINGS_ALLOWED -->
+		<!-- INCLUDE mypage/view_ratings.html -->
+	<!-- ENDIF -->
+
+	<!-- IF FOOTER -->
+		<div class="post bg1">
+		<div class="inner"><span class="corners-top"><span></span></span>
+		{FOOTER}
+		<span class="corners-bottom"><span></span></span></div>
+		</div>
+	<!-- ENDIF -->
+
+	<!-- INCLUDE overall_footer.html -->
+
+<!-- ELSE -->
+<html>
+<head>
+<title>{MYPAGE_TITLE}</title>
+<body style="{MYPAGE_CSS}" >
+<!-- IF COMMENTS_ALLOWED || RATINGS_ALLOWED -->
+<div>
+<table width="100%">
+<tr><td>
+<!-- IF COMMENTS_ALLOWED -->{COMMENT_COUNT_STRING} &bull; <a href="{COMMENT_LEAVE_VIEW_URL}" >{L_MP_COMMENT_LEAVE_VIEW_STRING}</a><!-- ENDIF -->
+</td><td align="right">
+<!-- IF RATINGS_ALLOWED --><img src="{RATING_IMG}" /> {RATE_LINK}<!-- ENDIF -->
+</td></tr>
+</table>
+</div>
+<!-- ENDIF -->
+<div>
+{CONTENT}
+</div>
+
+<!-- IF SHOW_COMMENTS && COMMENTS_ALLOWED -->
+	<!-- INCLUDE mypage/view_comments.html -->
+<!-- ENDIF -->
+	
+<!-- IF SHOW_RATINGS && RATINGS_ALLOWED -->
+	<!-- INCLUDE mypage/view_ratings.html -->
+<!-- ENDIF -->
+
+<!-- IF FOOTER --><div>{FOOTER}</div><!-- ENDIF -->
+
+
+</body>
+</html>
+<!-- ENDIF -->

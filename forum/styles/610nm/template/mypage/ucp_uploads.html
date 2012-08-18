@@ -1,0 +1,55 @@
+<!-- INCLUDE ucp_header.html -->
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<th colspan="4">{L_MP_MYPAGE} - {L_MP_UPLOADS}</th>
+</tr>
+<tr>
+	<th colspan="4">{L_MP_UPLOADED_FILES}</th>
+</tr>
+
+<tr>
+	<td class="row2"><strong>{L_MP_UP_FILE_NAME}</strong></td>
+	<td class="row2"><strong>{L_MP_UP_UPLOADED}</strong></td>
+	<td class="row2"><strong>{L_MP_UP_EXTENSION}</strong></td>
+	<td class="row2"><strong>{L_MP_UP_OPTIONS}</strong></td>
+</tr>
+
+
+
+<!-- BEGIN files -->
+<tr>
+	<td class="row1">{files.TITLE}</td>
+	<td class="row1">{files.UPLOAD_TIME}</td>
+	<td class="row1">{files.EXTENSION}</td>
+	<td class="row1"><a href="{files.DELETE_URL}" >{L_MP_DELETE}</a> / <a href="" onClick="w=window.open('mypage.php?image={files.ID}','imagewindow','width=700,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes,scrollbars=yes'); w.focus(); return false;">{L_MP_VIEW}</a></td>
+</tr>
+<!-- BEGINELSE -->
+<tr>
+	<td colspan="4" align="center">{L_MP_NO_FILES}</td>
+</tr>
+<!-- END files -->
+
+
+
+
+
+<!-- IF SHOWFORM -->
+
+<tr>
+	<th colspan="4">{L_MP_UPLOAD_FILES}</th>
+</tr>
+
+<tr>
+	<td colspan="2" class="row1">{L_MP_FILE_TO_UPLOAD}:</td>
+	<td colspan="2" class="row1"><input type="file" name="uploadedfile" class="inputbox" /></td>
+</tr>
+
+<tr>
+	<td class="row2" colspan="4" align="center"><input type="submit" name="submit" value="{L_SUBMIT}" class="button1" /></td>
+</tr>
+
+<!-- ENDIF -->
+
+</table>
+
+<!-- INCLUDE ucp_footer.html -->

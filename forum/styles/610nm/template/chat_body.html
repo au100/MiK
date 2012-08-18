@@ -1,0 +1,377 @@
+<!-- IF S_GET_CHAT -->
+  <!-- IF S_READ or S_ADD -->
+  <!-- BEGIN chatrow -->
+  <div id="p{chatrow.MESSAGE_ID}">
+    <table class="tablebg" cellpadding="6" cellspacing="0" width="100%">
+      <tr class="row{chatrow.CLASS}">
+        <td>
+          <!-- IF U_ACP or U_MCP --><a href="javascript:void({chatrow.MESSAGE_ID})" title="{L_DELETE_POST}" onclick="delete_post('{chatrow.MESSAGE_ID}')"><img src="{T_IMAGESET_LANG_PATH}/icon_post_delete.gif" /></a> <!-- ENDIF -->
+          <b class="postauthor">{chatrow.USERNAME_FULL}</b> « {chatrow.TIME} » &nbsp; <span class="postbody">{chatrow.MESSAGE}</span>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <!-- END chatrow -->---{LAST_ID}
+    <!-- IF S_WHOISONLINE -->---
+      <!-- BEGIN whoisrow -->
+      <div><img src="{T_IMAGESET_PATH}/{whoisrow.USER_STATUS}.png" class="online_img" /> {whoisrow.USERNAME_FULL}</div>
+      <!-- END whoisrow -->---{LAST_TIME}---{DELAY}---{LAST_POST}
+    <!-- ENDIF -->
+  <!-- ENDIF -->
+  <!-- ELSE -->
+    <!-- IF S_CHAT -->
+      <!-- INCLUDE overall_header.html -->
+    <!-- ENDIF -->
+    <script type="text/javascript">
+    <!--
+    var fieldname = 'chat';
+    var last_time = 0;
+    var xmlHttp = http_object();
+    var last_id = {LAST_ID};
+    var type = 'receive';
+    var post_time = {TIME};
+    var read_interval = 15000;
+    var interval = setInterval('handle_send("read", last_id);', read_interval);
+
+    function handle_send(mode, f)
+    {
+      if (xmlHttp.readyState == 4 || xmlHttp.readyState == 0)
+      {
+			indicator_switch('on');
+			type = 'receive';
+			param = 'mode=' + mode;	
+			param += '&last_id=' + last_id;
+			param += '&last_time=' + last_time;			
+			param += '&last_post=' + post_time;			
+			param += '&read_interval=' + read_interval;			
+	
+			if (mode == 'add' && document.text.message.value != '')
+			{
+				type = 'send';
+				for(var i = 0; i < f.elements.length; i++)
+				{ 
+					elem = f.elements[i]; 
+					param += '&' + elem.name + '=' + encodeURIComponent(elem.value); 
+				}
+				document.text.message.value = '';
+			}
+			else if (mode == 'delete')
+			{
+				type = 'delete';
+				param += '&chat_id=' + f;
+			}
+			xmlHttp.open("POST", '{FILENAME}', true);
+			xmlHttp.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xmlHttp.onreadystatechange = handle_return;
+			xmlHttp.send(param);
+		}
+	}
+	
+	function handle_return()
+	{
+		if (xmlHttp.readyState == 4)
+		{
+			if (type != 'delete')
+			{
+				results = xmlHttp.responseText.split('---');
+				if (results[1])
+				{
+					if (last_id == 0)
+					{
+						document.getElementById(fieldname).innerHTML = results[0];
+					}
+					else
+					{
+						document.getElementById(fieldname).innerHTML = results[0] + document.getElementById(fieldname).innerHTML;
+					}
+					last_id = results[1];
+					if (results[2])
+					{
+						document.getElementById('whois_online').innerHTML = results[2];
+						last_time = results[3];
+						if (results[4] != read_interval * 1000)
+						{
+							window.clearInterval(interval);
+							read_interval = results[4] * 1000;
+							interval = setInterval('handle_send("read", last_id);', read_interval);
+							document.getElementById('update_seconds').innerHTML = results[4];
+						}
+						post_time = results[5];
+					}
+				}
+			}
+			indicator_switch('off');
+		}
+	}
+	
+	function delete_post(chatid)
+	{
+		document.getElementById('p' + chatid).style.display = 'none';
+		handle_send('delete', chatid);
+	}
+	
+	function indicator_switch(mode)
+	{
+		if(document.getElementById("act_indicator"))
+		{
+			var img = document.getElementById("act_indicator");	
+			if(img.style.visibility == "hidden" && mode == 'on') 
+			{
+				img.style.visibility = "visible";
+			}
+			else if (mode == 'off')
+			{
+				img.style.visibility = "hidden"
+			}	
+		}
+	}
+	
+	function http_object()
+	{
+		if (window.XMLHttpRequest)
+		{
+			return new XMLHttpRequest();
+		}
+		else if(window.ActiveXObject)
+		{
+			return new ActiveXObject("Microsoft.XMLHTTP");
+		}
+		else
+		{
+			document.getElementById('p_status').innerHTML = 'Status: Cound not create XmlHttpRequest Object.  Consider upgrading your browser.';
+		}
+	}
+	-->
+	</script>
+	<style type="text/css">
+	<!--
+		.box
+		{
+			width: 95%;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.shouts {
+			width: 100%;
+			height:300px;
+			overflow:auto;
+		}
+		#chat {
+			width: 100%;
+			text-align:left;
+		}
+		#message {
+			width: 65%;
+		}
+		#whois_online{
+			vertical-align:text-top;
+			text-align:left;
+		}
+		.online_img {
+			vertical-align:middle;
+		}	
+		#act_indicator {
+			visibility:hidden;
+		}
+	-->
+	</style>
+	
+	<script type="text/javascript">
+	var form_name = 'text';
+	var text_name = 'message';
+	var load_draft = false;
+	var upload = false;
+
+	// Define the bbCode tags
+	var bbcode = new Array();
+	var bbtags = new Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[quote]','[/quote]','[code]','[/code]','[list]','[/list]','[list=]','[/list]','[img]','[/img]','[url]','[/url]','[flash=]', '[/flash]','[size=]','[/size]'<!-- BEGIN custom_tags -->, {custom_tags.BBCODE_NAME}<!-- END custom_tags -->);
+	var imageTag = false;
+	
+	function show_advanse_panel()
+	{
+		var e = document.getElementById('advense_panel');
+		
+		if (e.style.display == 'block')
+		{
+			e.style.display = 'none';
+			document.getElementById('adv_panel').value = 'Открыть смайлы';
+		}
+		else
+		{
+			e.style.display = 'block';
+			document.getElementById('adv_panel').value = 'Закрыть смайлы';
+		}
+	}
+		
+	function change_palette()
+	{
+		e = document.getElementById('colour_palette');
+		
+		if (e.style.display == 'block')
+		{
+			e.style.display = 'none';
+			document.getElementById('bbpalette').value = 'Цвет шрифта';
+		}
+		else
+		{
+			e.style.display = 'block';
+			document.getElementById('bbpalette').value = 'Скрыть панель цветов';
+		}
+	}
+	function send_message(e, h)
+	{
+		var keyChar = e.keyCode;
+		if(keyChar==13)
+		{
+			document.getElementById("submit").click();
+		}
+	}
+	function show_chat()
+	{
+		var e = document.getElementById('ch_visible');
+		
+		if (e.style.display == 'block')
+		{
+			e.style.display = 'none';
+			document.getElementById('ch_panel').value = 'Открыть чат';
+		}
+		else
+		{
+			e.style.display = 'block';
+			document.getElementById('ch_panel').value = 'Закрыть чат';
+		}
+	}
+		
+	
+        </script>
+        <script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>	
+	
+    <div class="box">
+    <table class="tablebg" cellspacing="1" width="100%">
+      <tr width="100%">
+        <td align="center" class="cat nav" width="85%">{SITENAME} {L_CHAT}</td>
+        <td align="center" class="cat nav" width="15%">
+          <input class="button1" type="submit" value="Открыть Чат" id="ch_panel"  onclick="show_chat(); return false;"/>
+        </td>
+      </tr>
+    </table> 
+	
+    <table class="tablebg" id="ch_visible" style="display:none;" cellspacing="1" width="100%">
+      <!-- IF S_USER_LOGGED_IN -->
+      <tr  width="100%">
+        <td align="center" class="cat nav" width="85%"></td>
+        <td align="center" class="cat nav" width="15%">{L_ONLINE_LIST}</td>
+      </tr>
+      <!-- ENDIF -->
+			
+      <tr  width="100%">
+		        
+        <td class="row3" style="text-align:left;" height="220" width="85%">
+          <div class="shouts">
+            <div id="chat">
+              <!-- BEGIN chatrow -->
+              <div id="p{chatrow.MESSAGE_ID}">
+                <table class="tablebg" cellpadding="6" cellspacing="0" width="100%">
+                  <tr class="row{chatrow.CLASS}">
+                    <td>
+                      <!-- IF U_ACP or U_MCP -->
+                      <a href="javascript:void({chatrow.MESSAGE_ID})" title="{L_DELETE_POST}" onclick="delete_post('{chatrow.MESSAGE_ID}')">
+                        <img src="{T_IMAGESET_LANG_PATH}/icon_post_delete.gif" />
+                      </a> 
+                      <!-- ENDIF -->
+                      <b class="postauthor">{chatrow.USERNAME_FULL}</b> « {chatrow.TIME} » &nbsp; <span class="postbody">{chatrow.MESSAGE}</span>
+                    </td>
+                  </tr>
+                </table>
+              </div>
+              <!-- END chatrow -->
+            </div>
+          </div>
+        </td>
+				  
+        <td class="row1" nowrap="nowrap">
+          <div class="shouts">
+            <div id="whois_online">
+              <!-- BEGIN whoisrow -->
+              <div>
+                <img src="{T_IMAGESET_PATH}/{whoisrow.USER_STATUS}.png" class="online_img" />{whoisrow.USERNAME_FULL}
+              </div>
+              <!-- END whoisrow -->
+            </div>
+          </div>
+        </td>
+				  
+      </tr>
+			
+      <!-- IF S_USER_LOGGED_IN -->
+      <tr  width="100%">
+        <td align="center" class="cat nav" colspan="2">
+          <form name="text" id="text" method="post" action="javascript:void(0);" onsubmit="handle_send('add', this)" autocomplete="off">{L_MESSAGE}: 
+            <textarea name="message" id="message" rows="1"  tabindex="1" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" onkeypress="send_message(event, this);" class="inputbox" style="height: 15px !important;"></textarea>
+                  <input class="button1" type="submit" name="submit" id="submit" value="{L_SUBMIT}" />
+                  <input class="button1" type="submit" value="Дополнительная панель" id="adv_panel"  onclick="show_advanse_panel(); return false;" tabindex="7" accesskey="a"/>
+          </form>
+        </td>
+      </tr>
+      <!-- ENDIF -->
+  			       
+       <tr align="center"  width="100%">
+         <td colspan="2">
+           <table width="100%">
+             <tr id="colour_palette" style="display: none;">
+               <td width="30%"></td>
+               <td align="center">
+                 <label>Цвет шрифта:</label>
+                 <script type="text/javascript">colorPalette('h', 15, 10, 'center');</script>
+               </td>
+             </tr>
+             <tr>
+                    <td align="center" colspan="2">
+                      <input type="button" class="button2" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px" onclick="bbstyle(0)" title="Жирный текст: [b]text[/b]" />
+                      <input type="button" class="button2" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px" onclick="bbstyle(2)" title="Наклонный текст: [i]text[/i]" />
+                      <input type="button" class="button2" accesskey="u" name="addbbcode4" value=" u " style="text-decoration: underline; width: 30px" onclick="bbstyle(4)" title="Подчеркнутый текст: [u]text[/u]" />
+                      <input type="button" class="button2" accesskey="q" name="addbbcode6" value="Quote" style="width: 50px" onclick="bbstyle(6)" title="Цитата: [quote]text[/quote]" />
+                      <input type="button" class="button2" accesskey="c" name="addbbcode8" value="Code" style="width: 40px" onclick="bbstyle(8)" title="Код: [code]code[/code]" />
+                      <input type="button" class="button2" accesskey="l" name="addbbcode10" value="List" style="width: 40px" onclick="bbstyle(10)" title="Список: [list]text[/list]" />
+                      <input type="button" class="button2" accesskey="o" name="addbbcode12" value="List=" style="width: 40px" onclick="bbstyle(12)" title="Нумерованный список: [list=]text[/list]" />
+                      <input type="button" class="button2" accesskey="t" name="addlitsitem" value="[*]" style="width: 40px" onclick="bbstyle(-1)" title="Элемент списка: [*]text[/*]" />
+                      <input type="button" class="button2" accesskey="p" name="addbbcode14" value="Img" style="width: 40px" onclick="bbstyle(14)" title="Вставить изображение: [img]http://image_url[/img]" />
+                      <input type="button" class="button2" accesskey="w" name="addbbcode16" value="URL" style="text-decoration: underline; width: 40px" onclick="bbstyle(16)" title="Вставить ссылку: [url]http://url[/url] или [url=http://url]URL text[/url]" />
+                      <input type="button" class="button2" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle(18)" title="Флэш: [flash=width,height]http://url[/flash]" />
+                      <select id="addbbcode20" name="addbbcode20" onchange="bbfontstyle('[size=' + document.getElementById('addbbcode20').options[document.getElementById('addbbcode20').selectedIndex].value + ']', '[/size]'); document.getElementById('addbbcode20').selectedIndex = 2;" title="Размер шрифта: [size=x-small]small text[/size]">
+                        <option value="50">Очень маленький</option>
+                        <option value="85">Маленький</option>
+                        <option value="100" selected="selected">Нормальный</option>
+                        <option value="150">Большой</option>
+                        <option value="200">Очень большой</option>
+                      </select>
+                      <input type="button" class="button2" name="bbpalette" id="bbpalette" value="Цвет шрифта" onclick="change_palette();" title="Цвет шрифта: [color=red]text[/color] Совет: Вы можете использовать также конструкцию color=#FF0000" />
+                      <!-- BEGIN custom_tags -->
+                      <input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+                      <!-- END custom_tags -->
+                    </td>
+             </tr>
+             <tr id="advense_panel" style="display: none;">
+               <td align="center">
+                 <!-- BEGIN smiley --> 
+                 <a href="#" onclick="insert_text('{smiley.A_SMILEY_CODE}',true); return false;"><img src="{smiley.SMILEY_IMG}" width="{smiley.SMILEY_WIDTH}" height="{smiley.SMILEY_HEIGHT}" alt="{smiley.SMILEY_CODE}" title="{smiley.SMILEY_DESC}" /></a> 
+                 <!-- END smiley	-->
+               </td>
+             </tr>
+           </table>
+         </td>
+       </tr>			
+			
+       <tr>
+         <td class="cat" colspan="2" align="center">
+           <img src="{T_IMAGESET_PATH}/act_indicator.gif" id="act_indicator" />
+           <strong>• {L_UPDATES} <span id="update_seconds">{DELAY}</span> {L_UNIT}</strong>
+         </td>
+       </tr>
+
+    </table> 
+  </div>
+  <!-- IF S_CHAT -->
+    <!-- INCLUDE overall_footer.html -->
+  <!-- ENDIF -->
+<!-- ENDIF -->

@@ -1,0 +1,69 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_MP_ACP_LIMITS}</h1>
+
+<p>{L_MP_ACP_LIMITS_EXPLAIN}</p>
+
+<form id="limits" method="post" action="{U_ACTION}">
+
+<fieldset>
+<legend>{L_MP_ACP_TTL_PAGE_LIMIT}</legend>
+
+<dl>
+	<dt><label for="pages_a">{L_MP_ACP_PAGE_LIMIT_A}:</label><br /><span>{L_MP_ACP_PAGE_LIMIT_A_EXPLAIN}</span></dt>
+	<dd><input id="pages_a" size="8" maxlength="15" name="mypage_allowed_1" value="{MYPAGE_ALLOWED_1}" type="text"></dd>
+</dl>
+
+<dl>
+	<dt><label for="pages_b">{L_MP_ACP_PAGE_LIMIT_B}:</label><br /><span>{L_MP_ACP_PAGE_LIMIT_B_EXPLAIN}</span></dt>
+	<dd><input id="pages_b" size="8" maxlength="15" name="mypage_allowed_2" value="{MYPAGE_ALLOWED_2}" type="text"></dd>
+</dl>
+
+<dl>
+	<dt><label for="pages_c">{L_MP_ACP_PAGE_LIMIT_C}:</label><br /><span>{L_MP_ACP_PAGE_LIMIT_C_EXPLAIN}</span></dt>
+	<dd><input id="pages_c" size="8" maxlength="15" name="mypage_allowed_3" value="{MYPAGE_ALLOWED_3}" type="text"></dd>
+</dl>
+
+</fieldset>
+
+<fieldset>
+<legend>{L_MP_ACP_TTL_UPLOAD_LIMIT}</legend>
+
+<dl>
+	<dt><label for="uploads_a">{L_MP_ACP_UPLOAD_LIMIT_A}:</label><br /><span>{L_MP_ACP_UPLOAD_LIMIT_A_EXPLAIN}</span></dt>
+	<dd><input id="uploads_a" size="8" maxlength="15" name="mypage_allowed_uploads_1" value="{MYPAGE_ALLOWED_UPLOADS_1}" type="text"></dd>
+</dl>
+
+<dl>
+	<dt><label for="uploads_b">{L_MP_ACP_UPLOAD_LIMIT_B}:</label><br /><span>{L_MP_ACP_UPLOAD_LIMIT_B_EXPLAIN}</span></dt>
+	<dd><input id="uploads_b" size="8" maxlength="15" name="mypage_allowed_uploads_2" value="{MYPAGE_ALLOWED_UPLOADS_2}" type="text"></dd>
+</dl>
+
+<dl>
+	<dt><label for="uploads_c">{L_MP_ACP_UPLOAD_LIMIT_C}:</label><br /><span>{L_MP_ACP_UPLOAD_LIMIT_C_EXPLAIN}</span></dt>
+	<dd><input id="uploads_c" size="8" maxlength="15" name="mypage_allowed_uploads_3" value="{MYPAGE_ALLOWED_UPLOADS_3}" type="text"></dd>
+</dl>
+
+<dl>
+	<dt><label for="uploads_size">{L_MP_ACP_UPLOAD_SIZE}:</label><br /><span>{L_MP_ACP_UPLOAD_SIZE_EXPLAIN}</span></dt>
+	<dd><input id="uploads_size" size="8" maxlength="15" name="mypage_max_uploads_size" value="{MYPAGE_MAX_UPLOADS_SIZE}" type="text"></dd>
+</dl>
+
+<dl>
+	<dt><label for="upload_secure">{L_MP_ACP_UPLOADS_SECURE}:</label><br /><span>{L_MP_ACP_UPLOADS_SECURE_EXPLAIN}</span></dt>
+	<dd><label><input id="upload_secure" name="mypage_upload_secure" value="1"<!-- IF MYPAGE_UPLOAD_SECURE == '1' --> checked="checked"<!-- ENDIF --> class="radio" type="radio"> {L_YES}</label><label><input name="mypage_upload_secure" value="0"<!-- IF MYPAGE_UPLOAD_SECURE == '0' --> checked="checked"<!-- ENDIF --> class="radio" type="radio"> {L_NO}</label></dd>
+</dl>
+
+</fieldset>
+
+<fieldset class="submit-buttons">
+		<legend>Submit</legend>
+		<input class="button1" id="submit" name="submit" value="Submit" type="submit">&nbsp;
+		<input class="button2" id="reset" name="reset" value="Reset" type="reset">
+</fieldset>
+
+
+
+</form>
+
+<!-- INCLUDE overall_footer.html -->

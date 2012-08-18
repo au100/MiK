@@ -1,0 +1,64 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>{L_MP_MYPAGE} - {L_MP_OVERVIEW}</h2>
+
+<form id="overviewform" name="overviewform" method="post" action="{BASIC_REDIRECT}">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+
+<p>{L_MP_OVERVIEW_EXPLAIN}</p>
+
+<h3>{L_MP_OVERVIEW}</h3>
+<fieldset>
+	<dl class="details">
+		<dt>{L_MP_USED_PAGES}:</dt> <dd>{PAGE_COUNT}</dd>
+		<!-- IF UPLOADS_ALLOWED --><dt>{L_MP_UPLOADED_FILES}:</dt> <dd>{UPLOAD_COUNT}</dd><!-- ENDIF -->
+		<!-- IF COMMENTS_ALLOWED --><dt>{L_MP_COMMENTS}:</dt> <dd>{COMMENT_COUNT}</dd><!-- ENDIF -->
+		<!-- IF RATINGS_ALLOWED --><dt>{L_MP_RATINGS}:</dt> <dd>{RATINGS_COUNT}</dd><!-- ENDIF -->
+	</dl>
+</fieldset>
+	
+<br />
+
+<!-- IF SHOW_PAGE_LIST -->
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+	<p>{L_MP_ORDER_EXPLAIN}</p>
+	
+<!-- BEGIN pages -->
+<h3>{pages.PAGE_TITLE}</h3>
+<fieldset>
+	<dl class="details">
+		<dt>{L_MP_OPTIONS}:</dt> <dd><a href="{pages.EDIT_URL}">{L_MP_EDIT}</a> / <a href="{pages.VIEW_URL}">{L_MP_VIEW}</a> / <a href="{pages.DELETE_URL}">{L_MP_DELETE}</a></dd>
+		<dt>{L_MP_RATINGS}:</dt> <dd>{pages.RATING}</dd>
+		<dt>{L_MP_COMMENTS}:</dt> <dd>{pages.COMMENTS}</dd>
+		<dt>{L_MP_ORDER}:</dt> <dd><input type="text" size="3" name="order[{pages.PAGE_ID}]" value="{pages.PAGE_ORDER}" /></dd>
+	</dl>
+</fieldset>
+
+<!-- END pages -->
+
+
+<!-- ENDIF -->
+
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<!-- IF PAGES -->
+
+<fieldset class="submit-buttons">
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+</fieldset>
+
+<!-- ENDIF -->
+
+
+</form>
+
+<!-- INCLUDE ucp_footer.html -->

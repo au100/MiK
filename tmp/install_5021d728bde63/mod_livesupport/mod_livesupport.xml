@@ -1,0 +1,478 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="1.7.0" client="site" method="upgrade">
+	<name>Live Support Chat</name>
+	<author>WebsiteChat.net</author>
+	<creationDate>August 4, 2011</creationDate>
+	<copyright>Copyright (C) 2011 WebsiteChat.net</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.txt</license>
+	<authorEmail>info@websitechat.net</authorEmail>
+	<authorUrl>websitechat.net</authorUrl>
+	<version>1.7.0</version>
+	<description><![CDATA[
+<div id="mod-livesupport-description"><img src="https://static.ssl7.net/images/loader.gif" alt="Loading..." /></div>
+
+<script type="text/javascript">var headID = document.getElementsByTagName("head")[0];
+
+var ModLiveSupport = {
+  getProto: function(){
+    return ("https:" == document.location.protocol) ? "https" : "http";
+  },
+  loadCSS: function(url){
+    var headID = document.getElementsByTagName("head")[0];
+    var cssNode = document.createElement('link');
+    cssNode.type = 'text/css';
+    cssNode.rel = 'stylesheet';
+    cssNode.href = this.getProto() + '://' + url;
+    cssNode.media = 'screen';
+    headID.appendChild(cssNode);
+  },
+  loadJS: function(url, callback){
+    var proto = ("https:" == document.location.protocol) ? "https" : "http";
+    var newScript = document.createElement('script');
+    newScript.type = 'text/javascript';
+    
+    if (callback)
+    {
+      newScript.onload = callback;
+    }
+    
+    newScript.src = this.getProto() + '://' + url;
+    headID.appendChild(newScript);
+  },
+  init: function(){
+    
+    setTimeout(function(){
+      
+      if (typeof Ext == "undefined" || typeof Ext.get != "function")
+      {
+        ModLiveSupport.init();
+      }
+      else
+      {
+        ModLiveSupport.app();
+      }
+    }, 500);
+
+  },
+  app: function(){
+    
+    var proto = this.getProto();
+    
+    Ext.BLANK_IMAGE_URL = proto + '://static.ssl7.net/extjs/lib/resources/images/default/s.gif';
+    
+    Ext.get('mod-livesupport-description').update('<div style="width: 100%; height: 100px;">Please use panel on the right to select your Live Chat button. Next configure <code>Position</code> and <code>Published</code> options above and <code>Module Assignment</code> below. Finally click <code>Save &amp; Close</code> and you are ready to start using Live Chat on your Joomla site. Detailed set up instructions can be found <a href="http://websitechat.net/en/3rd-party/joomla-1.7" target="_blank">here</a>.</div>');
+    
+    var fieldset = Ext.get('module-sliders').child('fieldset');
+    var field = fieldset.child('input');
+
+    fieldset.parent().update('<div id="ext-app"></div>');
+    
+    var dom_culture = 'en';
+    var active_button_id = '';
+  
+    var cultureStore = new Ext.data.SimpleStore({
+      id: 0,
+      fields: [
+        'culture',
+        'name'
+      ]
+    });
+
+    var languagesCombo = new Ext.form.ComboBox({
+      store: cultureStore,
+      displayField: 'name',
+      valueField: 'culture',
+      width: 140,
+      listWidth: 140,
+      name: 'culture',
+      hiddenName: 'culture',
+      mode: 'local',
+      triggerAction: 'all',
+      forceSelection: true,
+      editable: false,
+      listeners: {
+        select: function(combo,r){
+          buttonsList.renderButtons(r.data.culture);
+          
+          var button_id = hiddenField.getValue().match(/\/([0-9]+)\.gif/);
+          
+          var active_button = Ext.getCmp('button-' + button_id[1]);
+          
+          if (active_button)
+          {
+            hiddenField.setValue(active_button.htmlCode);
+            textAreaField.setValue(active_button.htmlCode);
+          }
+        }
+      }
+    });
+
+    var buttonsList = new Ext.Panel({
+      height: 330,
+      autoScroll: true,
+      renderButtons: function(culture){
+        
+        buttonsList.removeAll();
+        
+        remoteStore.each(function(r){
+          
+          var button = r.data;
+          
+          var on_img = button.on_img.replace(/%CULTURE%/g,culture);
+          var off_img = button.off_img.replace(/%CULTURE%/g,culture);
+          var html_code = button.html_code.replace(/%CULTURE%/g,culture);
+          
+          if (proto == 'https')
+          {
+            on_img = on_img.replace(/http\:/g,'https:');
+            off_img = off_img.replace(/http\:/g,'https:');
+            html_code = html_code.replace(/http\:/g,'https:');
+          }
+          
+          buttonsList.add({
+            id: 'button-' + button.id,
+            border: false,
+            htmlCode: html_code,
+            style: 'margin-left: 20px; margin-top: 20px; cursor: pointer;',
+            defaults: { border: false },
+            layout: 'column',
+            items: [
+              {
+                columnWidth: .5,
+                defaults: { border: false },
+                items: [
+                  {
+                    html: 'Online button',
+                    style: 'margin-bottom: 5px;'
+                  },{
+                    html: on_img
+                  }
+                ]
+              },{
+                columnWidth: .5,
+                defaults: { border: false },
+                items: [
+                  {
+                    html: 'Offline button',
+                    style: 'margin-bottom: 5px;'
+                  },{
+                    html: off_img
+                  }
+                ]
+              },{
+                width: 40,
+                cls: 'x-btn-tick',
+                style: 'margin-top: 20px;',
+                html: ''
+              }
+            ],
+            listeners: {
+              render: function(panel){
+                panel.body.on('click',function(){
+                  
+                  Ext.fly(panel.getEl()).frame("ff0000");
+                  
+                  buttonsList.items.each(function(btnPanel){
+                    btnPanel.items.items[2].body.update('');
+                  });
+                  
+                  panel.items.items[2].body.update('<img src="'+proto+'://static.ssl7.net/images/tick.gif" alt="V" />');
+                  
+                  hiddenField.setValue(html_code);
+                  textAreaField.setValue(html_code);
+                });
+              }
+            }
+          });
+        });
+        
+        buttonsList.doLayout();
+      },
+      listeners: {
+        afterlayout: function(panel){
+          
+          var button_id = hiddenField.getValue().match(/\/([0-9]+)\.gif/);
+          
+          if (button_id)
+          {
+            var active_button = Ext.getCmp('button-' + button_id[1]);
+            
+            if (active_button)
+            {
+              active_button.items.items[2].body.update('<img src="'+proto+'://static.ssl7.net/images/tick.gif" alt="V" />');
+            }
+          }
+        }
+      }
+    });
+
+    var buttonsPanel = new Ext.Panel({
+      border: false,
+      defaults: { border: false },
+      items: [
+        {
+          bodyStyle: 'padding: 20px; font-size: 14px; font-weight: bold;',
+          html: 'Please select your Live Chat button'
+        },
+          buttonsList,
+        {
+          xtype: 'toolbar',
+          items: [ 
+            {
+              xtype: 'tbtext',
+              text: 'Language:'
+            },
+            languagesCombo,
+            {
+              xtype:'tbfill'
+            },{
+              xtype: 'button',
+              text: 'Show button HTML code',
+              enableToggle: true,
+              handler: function(button){
+                
+                Ext.getCmp('field-holder').removeAll();
+                
+                if (button.pressed)
+                {
+                  Ext.getCmp('field-holder').add(textAreaField);
+                }
+                else
+                {
+                  Ext.getCmp('field-holder').add(hiddenField);
+                }
+                
+                Ext.getCmp('field-holder').doLayout();;
+              }
+            }
+          ]
+        }
+      ]
+    });
+
+    var remoteStore = new Ext.data.JsonStore({
+      baseParams: { method: 'buttons' },
+      proxy: new Ext.data.ScriptTagProxy({
+        url: 'https://ssl7.net/websitechat.net/api'
+      })
+    });
+
+    var loginPanel = new Ext.Panel({
+      layout: 'form',
+      doSubmit: function(){
+        
+        var errors = '';
+        
+        var email = Ext.getCmp('email').getValue();
+        
+        if (!email)
+        {
+          Ext.getCmp('email').markInvalid();
+          errors+= 'Email field is required. ';
+        }
+        
+        var password = Ext.getCmp('password').getValue();
+        
+        if (!password)
+        {
+          Ext.getCmp('password').markInvalid();
+          errors+= 'Password field is required.';
+        }
+        
+        if (errors)
+        {
+          Ext.getCmp('login-error').body.update(errors);
+          return false;
+        }
+        
+        remoteStore.baseParams = { method: 'buttons', email: email, password: password };
+        
+        remoteStore.load({callback: function(){
+          
+          if (remoteStore.reader.jsonData.status == "200")
+          {
+            wrapper.removeAll();
+            wrapper.add(buttonsPanel);
+            wrapper.doLayout();
+            
+            cultureStore.loadData(remoteStore.reader.jsonData.aval_cultures);
+            
+            if (!languagesCombo.getValue())
+            {
+              languagesCombo.setValue(dom_culture);
+            }
+            
+            buttonsList.renderButtons(languagesCombo.getValue());
+          }
+          else
+          {
+            Ext.getCmp('email').reset();
+            Ext.getCmp('password').reset();
+            
+            Ext.getCmp('login-error').body.update(remoteStore.reader.jsonData.errors);
+          }
+        }});
+      },
+      bodyStyle: 'padding: 20px;',
+      defaults: { border: false, allowBlank: false, hideLabel: true },
+      items: [
+        {
+          bodyStyle: 'font-size: 12px; font-weight: bold;',
+          html: 'Enter your WebsiteChat.net email and password,<br/>to access Live Chat buttons.'
+        },{
+          style: 'margin-top: 30px;',
+          html: 'Email:'
+        },{
+          xtype: 'textfield',
+          id: 'email',
+          width: 200,
+          enableKeyEvents: true,
+          listeners: { 
+            focus: function(){ 
+              Ext.getCmp('login-error').body.update('')
+            },
+            keyup: function(field,e){
+              
+              if (e.browserEvent.keyCode == 13)
+              {
+                loginPanel.doSubmit();
+              }
+            }
+          }
+        },{
+          style: 'margin-top: 10px;',
+          html: 'Password:'
+        },{
+          xtype: 'textfield',
+          id: 'password',
+          width: 200,
+          inputType: 'password',
+          enableKeyEvents: true,
+          listeners: { 
+            focus: function(){ 
+              Ext.getCmp('login-error').body.update('');
+            },
+            keyup: function(field,e){
+              
+              if (e.browserEvent.keyCode == 13)
+              {
+                loginPanel.doSubmit();
+              }
+            }
+          }
+        },{
+          style: 'margin-top: 10px;',
+          xtype: 'button',
+          scale: 'medium',
+          text: 'Login',
+          width: 70,
+          handler: function(){
+            loginPanel.doSubmit();
+          }
+        },{
+          id: 'login-error',
+          style: 'margin-top: 15px;',
+          bodyStyle: 'color: red;',
+          height: 40
+        },{
+          html: 'Forgotten your password? <a href="http://websitechat.net/recover-password" target="_blank">Click here</a>'
+        },{
+          bodyStyle: 'padding-top: 80px;',
+          html: "Don't have an account yet? <a target=\"_blank\" href=\"http://websitechat.net/en/register\">Register now!</a><br/>30 days free trial. No credit card required."
+        }
+      ]
+    });
+
+    var wrapper = new Ext.Panel({
+      defaults: { border: false },
+      items: {
+        bodyStyle: 'color: gray;',
+        html: 'Loading...'
+      },
+      listeners: {
+        render: function(panel){
+          
+          remoteStore.load({callback: function(){
+            wrapper.removeAll();
+            
+            if (remoteStore.reader.jsonData.status == "200")
+            {
+              cultureStore.loadData(remoteStore.reader.jsonData.aval_cultures);
+              
+              if (!languagesCombo.getValue())
+              {
+                languagesCombo.setValue(dom_culture);
+              }
+              
+              buttonsList.renderButtons(languagesCombo.getValue());
+              wrapper.add(buttonsPanel);
+            }
+            else
+            {
+              wrapper.add(loginPanel);
+            }
+            
+            wrapper.doLayout();
+          }});
+          
+          textAreaField.setWidth(panel.getWidth()-25);
+        }
+      }
+    });
+    
+    var hiddenField = new Ext.form.Hidden({
+      name: field.dom.name,
+      value: field.dom.value
+    });
+    
+    var textAreaField = new Ext.form.TextArea({
+      name: field.dom.name,
+      value: field.dom.value,
+      style: 'margin: 10px 0 10px 10px;'
+    });
+    
+    var panel = new Ext.Panel({
+      margins: '20 0 0 0',
+      border: false,
+      defaults: { border: false },
+      applyTo: 'ext-app',
+      items: [
+        wrapper,
+        {
+          id: 'field-holder',
+          items: hiddenField
+        }
+      ]
+    });
+    
+  }
+};
+
+if (location.href.match(/layout=edit/))
+{
+  ModLiveSupport.loadCSS('static.ssl7.net/css/extjs/lib/resources/css/ext-all.css');
+  ModLiveSupport.loadJS('static.ssl7.net/extjs/lib/adapter/ext/ext-base.js');
+  ModLiveSupport.loadJS('static.ssl7.net/extjs/lib/ext-all.js', ModLiveSupport.init());
+}
+else
+{
+  document.getElementById('mod-livesupport-description').innerHTML = 'This module displays Live Support Chat button on your site allowing for real-time communication with your visitors. Please go to <code>Extensions</code> => <code>Module Manager</code> => <code>Live Support Chat</code> to enable it.';
+}
+
+</script>
+]]></description>
+	<files>
+		<filename module="mod_livesupport">mod_livesupport.php</filename>
+		<filename module="mod_livesupport">tmpl/default.php</filename>
+		<filename module="mod_livesupport">tmpl/index.html</filename>
+		<filename module="mod_livesupport">helper.php</filename>
+		<filename module="mod_livesupport">index.html</filename>
+ 	</files>
+	<config>
+    <fields name="params">
+      <fieldset name="basic" label="Chat Button Settings">
+        <field filter="raw" name="live_support_button" type="text" default="Please select your Chat button" label="Please wait..." />
+      </fieldset>
+    </fields>
+	</config>
+</extension>

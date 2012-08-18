@@ -1,0 +1,238 @@
+<!-- INCLUDE overall_header.html -->
+
+
+
+<!-- IF S_SHOW_COPPA or S_REGISTRATION -->
+<!-- IF S_LANG_OPTIONS -->
+<script type="text/javascript">
+// <![CDATA[
+	/**
+	* Change language
+	*/
+	function change_language(lang_iso)
+	{
+		document.forms['register'].change_lang.value = lang_iso;
+		document.forms['register'].submit();
+	}
+
+// ]]>
+</script>
+
+	<form method="post" action="{S_UCP_ACTION}" id="register">
+		<table width="100%" cellspacing="0">
+			<tr>
+				<td class="gensmall" align="{S_CONTENT_FLOW_END}">{L_LANGUAGE}: <select name="lang" id="lang" onchange="change_language(this.value); return false;" title="{L_LANGUAGE}">{S_LANG_OPTIONS}</select></td>
+			</tr>
+		</table>
+		{S_HIDDEN_FIELDS}
+	</form>
+<!-- ENDIF -->
+	<form method="post" action="{S_UCP_ACTION}">
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th height="25">{SITENAME} - {L_REGISTRATION}</th>
+	</tr>
+	<tr>
+		<td class="row1" align="center">
+			<table width="90%" cellspacing="2" cellpadding="2" border="0" align="center">
+			<tr>
+				<!-- IF S_SHOW_COPPA -->
+					<td class="gen" align="center"><br />{L_COPPA_BIRTHDAY}<br /><br /><a href="{U_COPPA_NO}">{L_COPPA_NO}</a> :: <a href="{U_COPPA_YES}">{L_COPPA_YES}</a><br /><br /></td>
+				<!-- ELSE -->
+					<td>
+<span class="genmed"><br />
+  <H2 CLASS="western">
+    <em> <strong>
+      <span style="font-size: 200%; line-height: normal">
+        <div style="text-align:center">Свод правил нашего ресурса</div>
+      </span>
+    </strong></em><br />
+  </H2>
+  
+  <BLOCKQUOTE>		  
+  <DIV ID="post_message_91550" DIR="LTR">
+    <div style="text-align:justify; font-size: 120%; line-height: normal">
+    <em>
+      <span style="margin-left:30px;">
+        Администрация имеет все основания для того что бы вмешиваться в хаотическое и 
+        не информативное общение пользователей.
+      </span><br />
+      <span style="margin-left:30px;">
+        Информационно-познавательное общение для создания форума нового уровня, 
+        для правильного использования интеллектуального потенциала пользователей, 
+        для создания информационной базы для будущих поколений пользователей, 
+        для формирования интересных и полезных отношений в виртуальном обществе единомышленников.     
+      </span><br />
+      <span style="margin-left:30px;">
+        Виртуальная жизнь, как неотъемлемая часть тех, кто общается в интернете, 
+        пытается найти ответы на те вопросы, которые возникают в реальной жизни. 
+        Сложные бесповоротные моменты, которые, казалось бы, привели в тупик, 
+        смогут найти выход из «лабиринта» лишь в том случае, 
+        если каждый из Вас воспримет проблему собеседника как свою собственную и даст совет, 
+        основанный на своем опыте.
+      </span><br />
+      <span style="margin-left:30px;">
+        Администрация оставляет за собой право редактировать профили пользователей в случаях если: 
+        в них содержится оскорбления участников конференции, бессмысленные nik-name, реклама сторонних ресурсов. 
+        Отклонять запрос на регистрацию пользователей с бессмысленными nik-name и 
+        nik-name унижающими человеческое достоинство других пользователей, 
+        равно как призывающие к межконфессиональной и межрассовой вражде.
+      </span><br />
+    </div>
+    </em>
+      
+    <H2 CLASS="western">
+      <em> <strong>
+        <span style="font-size: 200%; line-height: normal">
+          <div style="text-align:center">Запрещается:</div>
+        </span>
+      </strong></em><br />
+    </H2>
+    <div style="text-align:justify; font-size: 120%; line-height: normal">
+      <strong><span style="margin-left:30px;">
+        1. Использование форума в противоправных целях.
+      </span></strong><br />
+      <em><span style="margin-left:30px;">
+         Вы обязуетесь не использовать ни одну из опций ресурса 
+         для поиска реального контакта в целях противоправной деятельности с другим участником.
+      </span></em><br /><br />
+
+      <strong><span style="margin-left:30px;">
+        2. Публикация сообщений с данного ресурса на других ресурсах сети.      
+      </span></strong><br />
+      <em><span style="margin-left:30px;">
+         Вы обязуетесь, не выкладывать материалы данного ресурса на других ресурсах сети, 
+         без предварительного разрешения автора материала.    
+      </span></em><br /><br />
+
+      <strong><span style="margin-left:30px;">
+        3. Криминальная или идентифицирующая информация.      
+      </span></strong><br />
+      <em><span style="margin-left:30px;">
+         Вы обязуетесь не размещать в ваших сообщениях информацию, 
+         которая содержит тайну или способна нанести ущерб пользователям.    
+      </span></em><br /><br />
+    
+      <strong><span style="margin-left:30px;">
+        4. Размещение спама и флуда.      
+      </span></strong><br />
+      <em><span style="margin-left:30px;">
+         Вы обязуетесь не размещать сообщения содержащие спам и флуд. 
+         Реклама сторонних ресурсов, только по разрешению администраторов форума.    
+      </span></em><br /><br />
+    
+      <strong><span style="margin-left:30px;">
+        5. Сообщения, содержащие изображения сексуального характера.      
+      </span></strong><br />
+      <em><span style="margin-left:30px;">
+         Вы обязуетесь не размещать в сообщениях изображения явные по своему 
+         сексуальному характеру и изображения аксессуаров секс-шопов.    
+      </span></em><br /><br />
+    
+      <strong><span style="margin-left:30px;">
+        6. Размещать в сообщениях эротические или порнографические изображения детей.      
+      </span></strong><br />
+      <em><span style="margin-left:30px;">
+         Вы обязуетесь не предоставлять ссылок на адреса веб-сайтов, 
+         которые содержат изображения, какими бы то ни было средствами демонстрирующее ребенка, 
+         совершающего реальные или смоделированные откровенно сексуальные действия, 
+         или любое изображение половых органов ребенка, главным образом в сексуальных целях, 
+         не приемлемый согласно существующим правилам форума, так же, 
+         как и осуществлять запросы на подобные материалы в сети. 
+         Вы также обязуетесь не размещать никаких эротических или порнографических изображений детей, 
+         которые находятся в сексуально-провокационных позах, или позах, 
+         где не просматривается никакого естественного на это контекста. 
+         <strong>За нарушение данного правила ваша учётная запись будет немедленно 
+         удаляться без предварительного предупреждения.</strong>
+      </span></em><br /><br />
+    
+      <strong><span style="margin-left:30px;">
+        7. Размещать в сообщения, содержащие унизительные изображения.      
+      </span></strong><br />
+      <em><span style="margin-left:30px;">
+         Вы обязуетесь не размещать в своих сообщениях изображения, 
+         показывающие человеческие злодеяния, скотства или садомазохизма.    
+      </span></em><br /><br />
+      
+      <strong><span style="margin-left:30px;">
+        8. Размещать оскорбительные и содержащие угрозы сообщения      
+      </span></strong><br />
+      <em><span style="margin-left:30px;">
+        Вы обязуетесь не оскорблять и не угрожать кому-либо из участников конференции, 
+        размещать призывы к межконфессиональной и межнациональной розни, провоцировать склоки и споры.    
+      </span></em><br /><br />
+      
+      <strong><span style="margin-left:30px;">
+        9. Размещение сообщений содержащих сексуально-непристойные описания.      
+      </span></strong><br />
+      <em><span style="margin-left:30px;">
+        Вы обязуетесь не постить сексуальные описания, выдержанные в порнографическом тоне и стиле. 
+        Мы ожидаем, что участники будут придерживаться беспристрастного тона в общении и общепринятому такту.     
+      </span></em><br /><br />
+
+      <strong><span style="margin-left:30px;">
+        10.Размещение сообщений нарушающих авторские права.      
+      </span></strong><br />
+      <em><span style="margin-left:30px;">
+        Администрация обязуется удалить любое сообщение нарушающее авторские права, 
+        по первому требованию автора. Если вы размещаете какие-либо материалы, 
+        из сети старайтесь предоставлять ссылку на первоисточник.    
+      </span></em><br /><br />
+    </div>
+     
+    <br /><br /> 
+    <div style="text-align:center; font-size: 120%; line-height: normal">
+      <em><strong>
+        За нарушение данных правил будут выноситься предупреждения и другие меры взыскания 
+        в соответствии с правилами модерирования.
+      </strong></em>
+    </div>
+    <br />
+    <div style="text-align:center">При возникновении проблем вы можете обратится к администрации форума:
+      <a href="mailto:support@karlson-bl.in">support@karlson-bl.in</a>
+    </div>
+  </div>
+</BLOCKQUOTE>  
+</span>
+
+  <div align="center">
+    <input class="btnlite" type="submit" id="agreed" name="agreed" value="{L_AGREE}" /><br /><br />
+    <input class="btnlite" type="submit" name="not_agreed" value="{L_NOT_AGREE}" />
+  </div>
+  </td>
+				<!-- ENDIF -->
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	{S_HIDDEN_FIELDS}
+	{S_FORM_TOKEN}
+	</form>
+
+<!-- ELSEIF S_AGREEMENT -->
+
+	<table class="tablebg" width="100%" cellspacing="1">
+	<tr>
+		<th height="25">{SITENAME} - {AGREEMENT_TITLE}</th>
+	</tr>
+	<tr>
+		<td class="row1" align="center">
+			<table width="90%" cellspacing="2" cellpadding="2" border="0" align="center">
+			<tr>
+				<td>
+					<span class="genmed"><br />{AGREEMENT_TEXT}<br /><br /></span>
+					<div align="center">
+						<a href="{U_BACK}">{L_BACK}</a>
+					</div>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+
+<!-- ENDIF -->
+
+<!-- INCLUDE overall_footer.html -->

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+<params>
+	<param name="bridge_path" default="forum" size="40" type="text" label="Bridge Path:" description="Path relative to Joomla! root for forum bridge" />
+	<param name="phpbb3_path" default="distribution" size="40" type="text" label="phpBB3 Path:" description="Path relative to Joomla! root for phpBB3 forum" />
+	<param name="sef_enable" type="radio" default="0" label="SEF Enabled" description="EXPERIMENTAL: Enable SEF URLs in the bridge">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+	<param name="sef_rewrite" type="radio" default="0" label="SEF Rewrite" description="EXPERIMENTAL: Enable Apache SEF Rewrite URLs in the bridge. Requires SEF Enabled to be true">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+	<param name="force_remember" type="radio" default="0" label="Force Remember me" description="Force 'Remember Me' during phpBB3 login">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+	<param name="link_format" type="list" default="bridged" label="Link Format" description="Controls the kind of links used in Joomla">
+		<option value="bridged">Bridged Links</option>
+		<option value="synced">Synced Links</option>
+	</param>
+	<param type="spacer" default="Settings from Darkick" />
+	<param name="create_user_immediately" type="radio" default="0" label="Create User immediately" description="Create a user in the phpBB3 along with the Joomla">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+	<param name="user_inactive" type="radio" default="0" label="Inactive created User" description="Make immediately created User inactive (disabled) if needs (EXPERIMENTAL)">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+	<param name="group_id" default="2" size="5" type="text" label="User group Id" description="Add user was created immediately to the group with this Id (see field 'group_id' in table 'phpbb_groups')" />
+	<param name="user_new" type="radio" default="0" label="Newly Registered Users group" description="Add user was created immediately to the Newly Registered Users group">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+	<param name="user_delete_mode" type="list" default="retain" label="User delete mode" description="Retain or Remove posts and topics of the deleted user">
+		<option value="retain">Retain posts</option>
+		<option value="remove">Remove posts</option>
+	</param>
+	<param name="save_post_username" type="radio" default="1" label="Save posts' username" description="Save posts' username of the deleted user or replace it with Guest username">
+		<option value="0">No</option>
+		<option value="1">Yes</option>
+	</param>
+ </params>
+</config>

@@ -1,0 +1,82 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_MP_ACP_STYLE}</h1>
+
+<p>{L_MP_ACP_STYLE_EXPLAIN}</p>
+
+<form id="limits" method="post" action="{U_ACTION}">
+
+<fieldset>
+<legend>General style options</legend>
+
+<dl>
+	<dt><label for="default_content">{L_MP_ACP_DEFAULT_CONTENT}:</label><br /><span>{L_MP_ACP_DEFAULT_CONTENT_EXPLAIN}</span></dt>
+	<dd><textarea id="default_content" name="mypage_default_content">{MYPAGE_DEFAULT_CONTENT}</textarea></dd>
+</dl>
+
+<dl>
+	<dt><label for="footer">{L_MP_ACP_FOOTER}:</label><br /><span>{L_MP_ACP_FOOTER_EXPLAIN}</span></dt>
+	<dd><textarea id="footer" name="mypage_custom_footer">{MYPAGE_CUSTOM_FOOTER}</textarea></dd>
+</dl>
+
+<dl>
+	<dt><label for="site_header">{L_MP_ACP_USE_HEADER}:</label><br /><span>{L_MP_ACP_USE_HEADER_EXPLAIN}</span></dt>
+	<dd><label><input id="site_header" name="mypage_use_board_header" value="1"<!-- IF MYPAGE_USE_BOARD_HEADER == '1' --> checked="checked"<!-- ENDIF --> class="radio" type="radio"> {L_YES}</label><label><input name="mypage_use_board_header" value="0"<!-- IF MYPAGE_USE_BOARD_HEADER == '0' --> checked="checked"<!-- ENDIF --> class="radio" type="radio"> {L_NO}</label></dd>
+</dl>
+
+</fieldset>
+
+<fieldset>
+<legend>{L_MP_ACP_TTL_RATE_IMGS}</legend>
+
+<p>{L_MP_ACP_TTL_RATE_IMGS_EXPLAIN}</p>
+
+<dl>
+	<dt><label for="rating_nr">{L_MP_RATE_NR}:</label></dt>
+	<dd><input id="rating_nr" size="15" maxlength="100" name="mypage_rate_none" value="{MYPAGE_RATE_NONE}" type="text"> <img src="../images/mypage_ratings/{MYPAGE_RATE_NONE}" /></dd>
+</dl>
+
+<dl>
+	<dt><label for="rating_0">{L_MP_RATE_0}:</label></dt>
+	<dd><input id="rating_0" size="15" maxlength="100" name="mypage_rate_0" value="{MYPAGE_RATE_0}" type="text"> <img src="../images/mypage_ratings/{MYPAGE_RATE_0}" /></dd>
+</dl>
+
+<dl>
+	<dt><label for="rating_1">{L_MP_RATE_1}:</label></dt>
+	<dd><input id="rating_1" size="15" maxlength="100" name="mypage_rate_1" value="{MYPAGE_RATE_1}" type="text"> <img src="../images/mypage_ratings/{MYPAGE_RATE_1}" /></dd>
+</dl>
+
+<dl>
+	<dt><label for="rating_2">{L_MP_RATE_2}:</label></dt>
+	<dd><input id="rating_2" size="15" maxlength="100" name="mypage_rate_2" value="{MYPAGE_RATE_2}" type="text"> <img src="../images/mypage_ratings/{MYPAGE_RATE_2}" /></dd>
+</dl>
+
+<dl>
+	<dt><label for="rating_3">{L_MP_RATE_3}:</label></dt>
+	<dd><input id="rating_3" size="15" maxlength="100" name="mypage_rate_3" value="{MYPAGE_RATE_3}" type="text"> <img src="../images/mypage_ratings/{MYPAGE_RATE_3}" /></dd>
+</dl>
+
+<dl>
+	<dt><label for="rating_4">{L_MP_RATE_4}:</label></dt>
+	<dd><input id="rating_4" size="15" maxlength="100" name="mypage_rate_4" value="{MYPAGE_RATE_4}" type="text"> <img src="../images/mypage_ratings/{MYPAGE_RATE_4}" /></dd>
+</dl>
+
+<dl>
+	<dt><label for="rating_5">{L_MP_RATE_5}:</label></dt>
+	<dd><input id="rating_5" size="15" maxlength="100" name="mypage_rate_5" value="{MYPAGE_RATE_5}" type="text"> <img src="../images/mypage_ratings/{MYPAGE_RATE_5}" /></dd>
+</dl>
+
+</fieldset>
+
+<fieldset class="submit-buttons">
+		<legend>Submit</legend>
+		<input class="button1" id="submit" name="submit" value="Submit" type="submit">&nbsp;
+		<input class="button2" id="reset" name="reset" value="Reset" type="reset">
+</fieldset>
+
+
+
+</form>
+
+
+<!-- INCLUDE overall_footer.html -->

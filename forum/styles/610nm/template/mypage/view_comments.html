@@ -1,0 +1,67 @@
+<!-- IF USE_BOARD_HEADER -->
+	<div id="comments">
+	<table width="100%" >
+	<!-- BEGIN comment -->
+
+<tr id="comment{comment.ID}"><td class="row3">
+{comment.BY_STRING}
+</td><td align="right" class="row3">
+<!-- IF comment.DELETE_URL --><a href="{comment.DELETE_URL}">Delete</a><!-- ENDIF --><!-- IF comment.DELETE_URL && comment.EDIT_URL --> | <!-- ENDIF --><!-- IF comment.EDIT_URL --><a href="{comment.EDIT_URL}">Edit</a><!-- ENDIF -->
+</td></tr>
+<tr><td colspan="2">
+	<!-- IF comment.IN_EDIT -->
+	<form action="{comment.EDIT_URL}" method="post">
+	<textarea name="editcomment">{comment.COMMENT}</textarea><br />
+	<input type="submit" name="submit" value="Submit" class="button1" />
+	</form>
+	<!-- ELSE -->
+	{comment.COMMENT}<br />
+	<!-- ENDIF -->
+</td></tr>
+	<!-- BEGINELSE -->
+	<tr><td colspan="2">{L_MP_BE_FIRST_COMMENT}</td></tr>
+	<!-- END comment -->
+
+<tr><td class="row3" colspan="2">{L_MP_ADD_COMMENT}</td></tr>
+<tr><td colspan="2">
+
+	<form method="post" action="{COMMENT_FORM_URL}">
+	<textarea name="comment" rows="5" cols="40"></textarea><br />
+	<input type="submit" name="submit" value="Submit" class="button1" />
+	</form>
+</td></tr>
+</table>
+	
+<!-- ELSE -->
+
+<div>
+
+<h3 id="comments">{L_MP_COMMENTS}</h3>
+<!-- BEGIN comment -->
+
+<table width="100%" id="comment{comment.ID}">
+<tr><td>
+{comment.BY_STRING}
+</td><td align="right">
+<!-- IF comment.DELETE_URL --><a href="{comment.DELETE_URL}">Delete</a><!-- ENDIF --><!-- IF comment.DELETE_URL && comment.EDIT_URL --> | <!-- ENDIF --><!-- IF comment.EDIT_URL --><a href="{comment.EDIT_URL}">Edit</a><!-- ENDIF -->
+</td></tr>
+</table>
+	<!-- IF comment.IN_EDIT -->
+		<form action="{comment.EDIT_URL}" method="post">
+		<textarea name="editcomment">{comment.COMMENT}</textarea><br />
+		<input type="submit" name="submit" value="Submit" class="button1" />
+		</form>
+	<!-- ELSE -->
+		{comment.COMMENT}<br />
+	<!-- ENDIF -->
+	<hr />
+<!-- BEGINELSE -->
+		{L_MP_BE_FIRST_COMMENT}
+<!-- END comment -->
+	<form method="post" action="{COMMENT_FORM_URL}">
+	<h3>{L_MP_ADD_COMMENT}</h3>
+	<textarea name="comment" rows="5" cols="40"></textarea><br />
+	<input type="submit" name="submit" value="Submit" class="button1" />
+	</form>
+</div>
+<!-- ENDIF -->

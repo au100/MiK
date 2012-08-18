@@ -1,0 +1,281 @@
+<!-- INCLUDE ucp_header.html -->
+
+<!-- IF VIEW == 'select_user' -->
+
+
+
+
+
+
+
+
+<!-- ELSEIF VIEW == 'page_select' -->
+
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<th colspan="2">{L_MP_MYPAGE} - {L_MP_EDIT_PAGE}</th>
+</tr>
+
+<tr>
+	<td class="row2" colspan="2"><strong>{L_MP_SELECT}</strong></td>
+</tr>
+<!-- BEGIN pages -->
+<tr>
+	<td class="row1" align="right" width="50%">{pages.PAGE_TITLE}:</td>
+	<td class="row1" width="50%"><a href="{pages.SELECT_URL}">{L_MP_SELECT}</a></td>
+</tr>
+<!-- END pages -->
+</table>
+
+
+<!-- ELSEIF VIEW == 'page_edit' -->
+
+<script type="text/javascript">
+// <![CDATA[
+	var form_name = 'ucp';
+	var text_name = 'message';
+// ]]>
+</script>
+
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<th colspan="2">{L_MP_MYPAGE} - {L_MP_EDIT_PAGE} ({MP_MYPAGE_TITLE})</th>
+</tr>
+<tr>
+	<th colspan="2">{L_MP_GENERAL_OPTIONS}</th>
+</tr>
+
+<tr>
+	<td class="row1">{L_MP_PAGE_TITLE}:</td>
+	<td class="row1"><input type="text" name="mypage_title" value="{MP_MYPAGE_TITLE}" /></td>
+</tr>
+
+<!-- IF SHOW_ALLOW_COMMENTS -->
+<tr>
+	<td class="row1">{L_MP_ALLOW_COMMENTS}:</td>
+	<td class="row1"><input name="allow_comments" id="allow_comments1" value="1" <!-- IF MP_ALLOW_COMMENTS == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES} | <input name="allow_comments" id="allow_comments0" value="0" <!-- IF MP_ALLOW_COMMENTS == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</td>
+</tr>
+<!-- ENDIF -->
+
+<!-- IF SHOW_ALLOW_RATINGS -->
+<tr>
+	<td class="row1">{L_MP_ALLOW_RATINGS}:</td>
+	<td class="row1"><input name="allow_ratings" id="allow_ratings1" value="1" <!-- IF MP_ALLOW_RATINGS == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES} | <input name="allow_ratings" id="allow_ratings0" value="0" <!-- IF MP_ALLOW_RATINGS == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</td>
+</tr>
+<!-- ENDIF -->
+
+<!-- IF SHOW_PARSE_HTML -->
+<tr>
+	<td class="row1">{L_MP_PARSE_HTML}:</td>
+	<td class="row1"><input name="parse_html" id="parse_html1" value="1" <!-- IF MP_PARSE_HTML == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES}</label> | <input name="parse_html" id="parse_html0" value="0" <!-- IF MP_PARSE_HTML == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</td>
+</tr>
+<!-- ENDIF -->
+
+<!-- IF SHOW_PARSE_BBCODE -->
+<tr>
+	<td class="row1">{L_MP_PARSE_BBCODE}:</td>
+	<td class="row1"><input name="parse_bbcode" id="parse_bbcode1" value="1" <!-- IF MP_PARSE_BBCODE == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES} | <input name="parse_bbcode" id="parse_bbcode0" value="0" <!-- IF MP_PARSE_BBCODE == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</td>
+</tr>
+<!-- ENDIF -->
+
+<!-- IF SHOW_PARSE_SMILES -->
+<tr>
+	<td class="row1">{L_MP_PARSE_SMILES}:</td>
+	<td class="row1"><input name="parse_smiles" id="parse_smiles1" value="1" <!-- IF MP_PARSE_SMILES == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES} | <input name="parse_smiles" id="parse_smiles0" value="0" <!-- IF MP_PARSE_SMILES == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</td>
+</tr>
+<!-- ENDIF -->
+
+<!-- IF SHOW_PARSE_URL -->
+<tr>
+	<td class="row1">{L_MP_PARSE_URL}:</td>
+	<td class="row1"><input name="parse_url" id="parse_url1" value="1" <!-- IF MP_PARSE_URL == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES} | <input name="parse_url" id="parse_url0" value="0" <!-- IF MP_PARSE_URL == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</td>
+</tr>
+<!-- ENDIF -->
+
+<tr>
+	<th colspan="2">{L_MP_STYLE_OPTIONS}</th>
+</tr>
+
+<tr>
+	<td class="row1">{L_MP_BGRND_COLOR}:</td>
+	<td class="row1"><select id="bg_color" name="bg_color">
+	<!-- BEGIN select_bg_color -->
+	<option value="{select_bg_color.VAL}" {select_bg_color.SEL}>{select_bg_color.LANG}</option>
+	<!-- END select_bg_color -->
+	</select></td>
+</tr>
+
+<tr>
+	<td class="row1">{L_MP_BGRND_IMAGE}:</td>
+	<td class="row1"><input class="inputbox" type="text" id="bg_img_url" name="bg_img_url" value="<!-- IF MP_BG_IMG_URL -->{MP_BG_IMG_URL}<!-- ENDIF -->" /></td>
+</tr>
+
+<tr>
+	<td class="row1">{L_MP_BGRND_STYLE}:</td>
+	<td class="row1"><select id="bg_style" name="bg_style">
+	<option value="repeat"<!-- IF MP_BG_STYLE == 'repeat' --> selected="yes"<!-- ENDIF -->>Repeat Full Page</option>
+	<option value="repeat-y"<!-- IF MP_BG_STYLE == 'repeat-y' --> selected="yes"<!-- ENDIF -->>Repeat Vertically</option>
+	<option value="repeat-x"<!-- IF MP_BG_STYLE == 'repeat-x' --> selected="yes"<!-- ENDIF -->>Repeat Horizontally</option>
+	</select>
+	<select id="bg_style_fix" name="bg_style_fix">
+	<option value="fixed"<!-- IF MP_BG_STYLE_FIX == 'fixed' --> selected="yes"<!-- ENDIF -->>Fixed</option>
+	<option value="scroll"<!-- IF MP_BG_STYLE_FIX == 'scroll' --> selected="yes"<!-- ENDIF -->>Scroll</option>
+	</select></td>
+</tr>
+
+<tr>
+	<td class="row1">{L_MP_FONT_SIZE}:</td>
+	<td class="row1"><select id="fnt_size" name="fnt_size">
+	<!-- BEGIN select_fnt_size -->
+	<option value="{select_fnt_size.VAL}" {select_fnt_size.SEL}>{select_fnt_size.LANG}</option>
+	<!-- END select_fnt_size -->
+	</select></td>
+</tr>
+
+<tr>
+	<td class="row1">{L_MP_FONT_COLOR}:</td>
+	<td class="row1"><select id="fnt_color" name="fnt_color">
+	<!-- BEGIN select_fnt_color -->
+	<option value="{select_fnt_color.VAL}" {select_fnt_color.SEL}>{select_fnt_color.LANG}</option>
+	<!-- END select_fnt_color -->
+	</select></td>
+</tr>
+
+<tr>
+	<th colspan="2"><a id="editor" name="editor"></a>{L_MP_EDITOR}</th>
+</tr>
+
+
+
+
+<script type="text/javascript">
+// <![CDATA[
+	
+	// Define the bbCode tags
+	var bbcode = new Array();
+	var bbtags = new Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[quote]','[/quote]','[code]','[/code]','[list]','[/list]','[list=]','[/list]','[img]','[/img]','[url]','[/url]','[flash=]', '[/flash]','[size=]','[/size]'<!-- BEGIN custom_tags -->, {custom_tags.BBCODE_NAME}<!-- END custom_tags -->);
+	var imageTag = false;
+
+	// Helpline messages
+	var help_line = {
+		b: '{LA_BBCODE_B_HELP}',
+		i: '{LA_BBCODE_I_HELP}',
+		u: '{LA_BBCODE_U_HELP}',
+		q: '{LA_BBCODE_Q_HELP}',
+		c: '{LA_BBCODE_C_HELP}',
+		l: '{LA_BBCODE_L_HELP}',
+		o: '{LA_BBCODE_O_HELP}',
+		p: '{LA_BBCODE_P_HELP}',
+		w: '{LA_BBCODE_W_HELP}',
+		a: '{LA_BBCODE_A_HELP}',
+		s: '{LA_BBCODE_S_HELP}',
+		f: '{LA_BBCODE_F_HELP}',
+		e: '{LA_BBCODE_E_HELP}',
+		d: '{LA_BBCODE_D_HELP}'
+		<!-- BEGIN custom_tags -->
+			,cb_{custom_tags.BBCODE_ID}: '{custom_tags.A_BBCODE_HELPLINE}'
+		<!-- END custom_tags -->
+	}
+
+	function set_background(url)
+	{
+		document.postform.bg_img_url.value = url
+	}
+	
+// ]]>
+</script>
+
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
+
+
+<!-- IF S_BBCODE_ALLOWED -->
+
+<tr>
+	<td class="row1" colspan="2">
+		<script type="text/javascript">
+		// <![CDATA[
+		colorPalette('h', 6, 5)
+		// ]]>
+		</script>
+	</td>
+</tr>
+
+<tr>
+	<td class="row1" colspan="2">
+	<input type="button" class="btnbbcode" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px" onclick="bbstyle(0)" title="{L_BBCODE_B_HELP}" />
+	<input type="button" class="btnbbcode" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px" onclick="bbstyle(2)" title="{L_BBCODE_I_HELP}" />
+	<input type="button" class="btnbbcode" accesskey="u" name="addbbcode4" value=" u " style="text-decoration: underline; width: 30px" onclick="bbstyle(4)" title="{L_BBCODE_U_HELP}" />
+	<!-- IF S_BBCODE_QUOTE -->
+		<input type="button" class="btnbbcode" accesskey="q" name="addbbcode6" value="Quote" style="width: 50px" onclick="bbstyle(6)" title="{L_BBCODE_Q_HELP}" />
+	<!-- ENDIF -->
+	<input type="button" class="btnbbcode" accesskey="c" name="addbbcode8" value="Code" style="width: 40px" onclick="bbstyle(8)" title="{L_BBCODE_C_HELP}" />
+	<input type="button" class="btnbbcode" accesskey="l" name="addbbcode10" value="List" style="width: 40px" onclick="bbstyle(10)" title="{L_BBCODE_L_HELP}" />
+	<input type="button" class="btnbbcode" accesskey="o" name="addbbcode12" value="List=" style="width: 40px" onclick="bbstyle(12)" title="{L_BBCODE_O_HELP}" />
+	<input type="button" class="btnbbcode" accesskey="t" name="addlitsitem" value="[*]" style="width: 40px" onclick="bbstyle(-1)" title="{L_BBCODE_LISTITEM_HELP}" />
+	<!-- IF S_BBCODE_IMG -->
+		<input type="button" class="btnbbcode" accesskey="p" name="addbbcode14" value="Img" style="width: 40px" onclick="bbstyle(14)" title="{L_BBCODE_P_HELP}" />
+	<!-- ENDIF -->
+	<!-- IF S_LINKS_ALLOWED -->
+		<input type="button" class="btnbbcode" accesskey="w" name="addbbcode16" value="URL" style="text-decoration: underline; width: 40px" onclick="bbstyle(16)" title="{L_BBCODE_W_HELP}" />
+	<!-- ENDIF -->
+	<!-- IF S_BBCODE_FLASH -->
+		<input type="button" class="btnbbcode" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" />
+	<!-- ENDIF -->
+	<select name="addbbcode20" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.form.addbbcode20.selectedIndex = 2;" title="{L_BBCODE_F_HELP}">
+		<option value="50">{L_FONT_TINY}</option>
+		<option value="85">{L_FONT_SMALL}</option>
+		<option value="100" selected="selected">{L_FONT_NORMAL}</option>
+		<option value="150">{L_FONT_LARGE}</option>
+		<option value="200">{L_FONT_HUGE}</option>
+	</select>
+	<input type="button" class="btnbbcode" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
+	<!-- BEGIN custom_tags -->
+		<input type="button" class="btnbbcode" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+	<!-- END custom_tags -->
+	</td>
+</tr>
+<!-- ENDIF -->
+
+<tr>
+	<td colspan="2"><input type="text" readonly="readonly" name="helpbox" style="width:100%" class="helpline" value="{L_STYLES_TIP}" /></td>
+</tr>
+
+
+<tr>
+	<td class="row1" colspan="2">
+	<textarea name="message" id="message" rows="15" cols="76" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" class="inputbox">{MP_CONTENT}</textarea>
+	</td>
+</tr>
+
+<!-- IF SHOW_UPLOADS -->
+
+<tr>
+	<th colspan="2">{L_MP_UPLOADED_FILES}</th>
+</tr>
+
+<!-- BEGIN uploads -->
+
+<tr>
+	<td class="row1">{uploads.TITLE}:</td>
+	<td class="row1">
+		<input type="button" onclick="insert_text('[IMG]{uploads.URL}[/IMG]', true, false)" value="{L_MP_INSERT_INLINE}">
+		<input type="button" onclick="set_background('{uploads.URL}')" value="{L_MP_MAKE_BACKGROUND}">
+	</td>
+</tr>
+
+<!-- END uploads -->
+
+
+<!-- ENDIF -->
+
+<tr>
+	<td class="row2" colspan="2" align="center">
+		<input type="hidden" name="page_id" value="{MP_MYPAGE_ID}" />
+		<input type="reset" name="reset" value="{L_RESET}" class="button2" />&nbsp; 
+		<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	</td>
+</tr>
+
+<!-- ENDIF -->
+
+<!-- INCLUDE ucp_footer.html -->

@@ -1,0 +1,12 @@
+RewriteEngine on
+RewriteBase /most/
+
+# Standard phpBB3 files matching
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} \.php$
+RewriteRule (.+)\.php$ index.php?rb_v=$1&%{QUERY_STRING} [L]
+# RokBridge SEF rewrite
+RewriteCond %{REQUEST_FILENAME}                 !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.+) index.php?$1&%{QUERY_STRING} [L]

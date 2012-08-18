@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="content">
+	<name>Content - Article2phpBB3</name>
+	<author>Darkick</author>
+	<creationDate>09.09.2008</creationDate>
+	<copyright>Darkick</copyright>
+	<license>GNU/GPL</license>
+	<authorEmail>darkick@mail.ru</authorEmail>
+	<authorUrl>darkick.ru</authorUrl>
+	<version>0.8</version>
+	<description>Submit an article into phpBB3 forum as new Topic (for discussing etc.)</description>
+	<files>
+		<filename plugin="article2phpbb3">article2phpbb3.php</filename>
+		<filename>article2phpbb3/index.html</filename>
+		<filename>article2phpbb3/phpbb3_user.php</filename>
+	</files>
+	<languages>
+		<language tag="ru-RU">ru-RU.plg_content_article2phpbb3.ini</language>
+	</languages>
+	<params>
+		<param name="forum_path" type="text" default="forum" label="Path to forum" description="Path to phpBB3 forum directory relative Joomla (i.e. 'distribution' for RokBridge)" />
+		<param name="categories_id" type="text" default="" label="Article categories" description="List of article categories id (comma separated) for submiting to forum" />
+		<param name="forums_id" type="text" default="" label="Forums" description="List of phpBB3 forums id (comma separated) for new topics" />
+		<param name="users_id" type="text" default="0" label="Users" description="List of phpBB3 users id (comma separated) for authors. Zero (0) for using Joomla user" />
+		<param name="viewtopic_link" type="text" default="./forum/viewtopic.php?f=$forum_id&amp;t=$topic_id" label="Link to topic" description="Link to created forum topic with replacment variables. Use underline (_) for default phpBB3 link" />
+		<param name="target" type="text" default="" label="Link target" description="Value for 'target' parameter of forum link. Useful for wrappers" />
+		<param name="@spacer" type="spacer" />
+		<param label="Show link to forum at:" description="Insert into article text link to forum topic" />
+			<param name="link_to_forum_top" type="radio" default="0" label="article top">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			<param name="link_to_forum_before_readmore" type="radio" default="0" label="before 'readmore'">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			<param name="link_to_forum_after_readmore" type="radio" default="0" label="after 'readmore'">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+			<param name="link_to_forum_bottom" type="radio" default="1" label="article bottom">
+				<option value="0">No</option>
+				<option value="1">Yes</option>
+			</param>
+		<param name="@spacer" type="spacer" />
+		<param name="forum_message_type" type="list" default="0" label="Forum message type" description="Format of created forum message text">
+			<option value="0">Intro text and Full text</option>
+			<option value="1">Intro text only</option>
+			<option value="2">Full text only</option>
+		</param>
+		<param name="link_to_article" type="radio" default="0" label="Link to original article" description="Add to forum message link to original article (not able yet)">
+			<option value="0">No</option>
+		</param>
+	</params>
+</install>

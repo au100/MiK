@@ -1,0 +1,78 @@
+<!-- INCLUDE ucp_header.html -->
+
+<table class="tablebg" width="100%" cellspacing="1">
+<tr>
+	<th colspan="2">{L_MP_MYPAGE} - {L_MP_OVERVIEW}</th>
+</tr>
+<tr>
+	<td class="row1" colspan="2" align="center"><p class="genmed">{L_MP_OVERVIEW_EXPLAIN}</p></td>
+</tr>
+<tr>
+	<th colspan="2">{L_MP_OVERVIEW}</th>
+</tr>
+<tr>
+	<td class="row1" align="right">{L_MP_USED_PAGES}:</td>
+	<td class="row1" align="left">{PAGE_COUNT}</td>
+</tr>
+<!-- IF UPLOADS_ALLOWED -->
+<tr>
+	<td class="row1" align="right">{L_MP_UPLOADED_FILES}:</td>
+	<td class="row1" align="left">{UPLOAD_COUNT}</td>
+</tr>
+<!-- ENDIF -->
+<!-- IF COMMENTS_ALLOWED -->
+<tr>
+	<td class="row1" align="right">{L_MP_COMMENTS}:</td>
+	<td class="row1" align="left">{COMMENT_COUNT}</td>
+</tr>
+<!-- ENDIF -->
+<!-- IF RATINGS_ALLOWED -->
+<tr>
+	<td class="row1" align="right">{L_MP_RATINGS}:</td>
+	<td class="row1" align="left">{RATINGS_COUNT}</td>
+</tr>
+<!-- ENDIF -->
+
+<!-- IF SHOW_PAGE_LIST -->
+
+<tr>
+	<td class="row3" colspan="2">{L_MP_ORDER_EXPLAIN}</td>
+</tr>
+
+<!-- BEGIN pages -->
+<tr>
+	<td class="row2" colspan="2">{pages.PAGE_TITLE}</td>
+</tr>
+
+<tr>
+	<td class="row1" align="right">{L_MP_OPTIONS}:</td>
+	<td class="row1" align="left"><a href="{pages.EDIT_URL}">{L_MP_EDIT}</a> / <a href="{pages.VIEW_URL}">{L_MP_VIEW}</a> / <a href="{pages.DELETE_URL}">{L_MP_DELETE}</a></td>
+</tr>
+<!-- IF RATINGS_ALLOWED -->
+<tr>
+	<td class="row1" align="right">{L_MP_RATINGS}:</td>
+	<td class="row1" align="left">{pages.RATING}</td>
+</tr>
+<!-- ENDIF -->
+<!-- IF COMMENTS_ALLOWED -->
+<tr>
+	<td class="row1" align="right">{L_MP_COMMENTS}:</td>
+	<td class="row1" align="left">{pages.COMMENTS}</td>
+</tr>
+<!-- ENDIF -->
+<tr>
+	<td class="row1" align="right">{L_MP_ORDER}:</td>
+	<td class="row1" align="left"><input type="text" size="3" name="order[{pages.PAGE_ID}]" value="{pages.PAGE_ORDER}" /></td>
+</tr>
+
+<!-- END pages -->
+
+<tr>
+	<td class="row2" colspan="2" align="center"><input type="submit" name="submit" value="{L_SUBMIT}" class="button1" /></td>
+</tr>
+
+<!-- ENDIF -->
+
+</table>
+
+<!-- INCLUDE ucp_footer.html -->

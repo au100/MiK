@@ -1,0 +1,57 @@
+<!-- INCLUDE ucp_header.html -->
+
+<h2>{L_MP_MYPAGE} - {L_MP_UPLOADS}</h2>
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+	
+<h3>{L_MP_UPLOADED_FILES}</h3>
+
+<table width="100%">
+<tr><td><strong>{L_MP_UP_FILE_NAME}</strong></td><td><strong>{L_MP_UP_UPLOADED}</strong></td><td><strong>{L_MP_UP_EXTENSION}</strong></td><td><strong>{L_MP_UP_OPTIONS}</strong></td></tr>
+
+<!-- BEGIN files -->
+<tr><td>{files.TITLE}</td><td>{files.UPLOAD_TIME}</td><td>{files.EXTENSION}</td><td><a href="{files.DELETE_URL}" >{L_MP_DELETE}</a> / <a href="" onClick="w=window.open('mypage.php?image={files.ID}','imagewindow','width=700,height=600,toolbar=no,location=no,directories=no,status=no,menubar=no,resizable=yes,scrollbars=yes'); w.focus(); return false;">{L_MP_VIEW}</a></td></tr>
+<!-- BEGINELSE -->
+<tr><td colspan="4" align="center">{L_MP_NO_FILES}</td></tr>
+<!-- END files -->
+
+</table>
+
+
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+
+
+<!-- IF SHOWFORM -->
+
+<form enctype="multipart/form-data" action="{BASIC_REDIRECT}" method="POST">
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+<h3>{L_MP_UPLOAD_FILES}</h3>
+
+<fieldset>
+	<dl>
+		<dt><label for="uploadedfile">{L_MP_FILE_TO_UPLOAD}:</label></dt>
+		<dd>
+			<label for="uploadedfile">
+				<input type="file" name="uploadedfile" class="inputbox" />
+			</label>
+		</dd>
+	</dl>
+</fieldset>
+
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+
+<fieldset class="submit-buttons">
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+</fieldset>
+
+</form
+
+<!-- ENDIF -->
+
+<!-- INCLUDE ucp_footer.html -->

@@ -1,0 +1,8 @@
+Мод "NV advanced last topic titles"
+PHP Version: 5.2.14
+DBMS: MySQL(i) 5.1.56
+phpBB3 Version: 3.0.9
+
+Р”РѕР±Р°РІР»РµРЅРёРµ acp РјРѕРґСѓР»СЏ: конфигурация мода NV advanced last topic titles
+SQL ERROR Incorrect string value: '\xEA\xEE\xED\xF4\xE8\xE3...' for column 'log_data' at row 1
+

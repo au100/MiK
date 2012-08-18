@@ -1,0 +1,359 @@
+<!-- INCLUDE ucp_header.html -->
+
+<!-- IF VIEW == 'select_user' -->
+
+
+
+
+
+
+
+
+<!-- ELSEIF VIEW == 'page_select' -->
+
+<h2>{L_MP_MYPAGE} - {L_MP_EDIT_PAGE}</h2>
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+<h3>{L_MP_SELECT}</h3>
+
+<dl class="details">
+	<!-- BEGIN pages -->
+	<dt>{pages.PAGE_TITLE}:</dt> <dd><a href="{pages.SELECT_URL}">{L_MP_SELECT}</a></dd>
+	<!-- END pages -->
+</dl>
+	
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+
+
+<!-- ELSEIF VIEW == 'page_edit' -->
+
+
+<form id="postform" name="postform" method="post" action="{BASIC_REDIRECT}">
+<h2>{L_MP_MYPAGE} - {L_MP_EDIT_PAGE} ({MP_MYPAGE_TITLE})</h2>
+
+<div class="panel">
+	<div class="inner"><span class="corners-top"><span></span></span>
+
+<h3>{L_MP_GENERAL_OPTIONS}</h3>
+
+	<fieldset>
+	<dl>
+		<dt><label for="mypage_title">{L_MP_PAGE_TITLE}:</label></dt>
+		<dd>
+			<label for="mypage_title">
+				<input type="text" name="mypage_title" value="{MP_MYPAGE_TITLE}" />
+			</label>
+
+		</dd>
+	</dl>
+<!-- IF SHOW_ALLOW_COMMENTS -->
+	<dl>
+		<dt><label for="allow_comments">{L_MP_ALLOW_COMMENTS}:</label></dt>
+		<dd>
+			<label for="allow_comments1"><input name="allow_comments" id="allow_comments1" value="1" <!-- IF MP_ALLOW_COMMENTS == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES}</label> 
+			<label for="allow_comments0"><input name="allow_comments" id="allow_comments0" value="0" <!-- IF MP_ALLOW_COMMENTS == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</label>
+
+		</dd>
+	</dl>
+<!-- ENDIF -->
+<!-- IF SHOW_ALLOW_RATINGS -->
+	<dl>
+		<dt><label for="allow_ratings">{L_MP_ALLOW_RATINGS}:</label></dt>
+		<dd>
+			<label for="allow_ratings1"><input name="allow_ratings" id="allow_ratings1" value="1" <!-- IF MP_ALLOW_RATINGS == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES}</label> 
+			<label for="allow_ratings0"><input name="allow_ratings" id="allow_ratings0" value="0" <!-- IF MP_ALLOW_RATINGS == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</label>
+
+		</dd>
+	</dl>
+<!-- ENDIF -->
+<!-- IF SHOW_PARSE_HTML -->
+	<dl>
+		<dt><label for="parse_html">{L_MP_PARSE_HTML}:</label></dt>
+		<dd>
+			<label for="parse_html1"><input name="parse_html" id="parse_html1" value="1" <!-- IF MP_PARSE_HTML == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES}</label> 
+			<label for="parse_html0"><input name="parse_html" id="parse_html0" value="0" <!-- IF MP_PARSE_HTML == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</label>
+
+		</dd>
+	</dl>
+<!-- ENDIF -->
+<!-- IF SHOW_PARSE_BBCODE -->
+	<dl>
+		<dt><label for="parse_bbcode">{L_MP_PARSE_BBCODE}:</label></dt>
+		<dd>
+			<label for="parse_bbcode1"><input name="parse_bbcode" id="parse_bbcode1" value="1" <!-- IF MP_PARSE_BBCODE == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES}</label> 
+			<label for="parse_bbcode0"><input name="parse_bbcode" id="parse_bbcode0" value="0" <!-- IF MP_PARSE_BBCODE == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</label>
+
+		</dd>
+	</dl>
+<!-- ENDIF -->
+<!-- IF SHOW_PARSE_SMILES -->
+	<dl>
+		<dt><label for="parse_smiles">{L_MP_PARSE_SMILES}:</label></dt>
+		<dd>
+			<label for="parse_smiles"><input name="parse_smiles" id="parse_smiles1" value="1" <!-- IF MP_PARSE_SMILES == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES}</label> 
+			<label for="parse_smiles0"><input name="parse_smiles" id="parse_smiles0" value="0" <!-- IF MP_PARSE_SMILES == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</label>
+
+		</dd>
+	</dl>
+<!-- ENDIF -->
+<!-- IF SHOW_PARSE_URL -->
+	<dl>
+		<dt><label for="parse_url">{L_MP_PARSE_URL}:</label></dt>
+		<dd>
+			<label for="parse_url1"><input name="parse_url" id="parse_url1" value="1" <!-- IF MP_PARSE_URL == '1' -->checked="yes" <!-- ENDIF -->type="radio"> {L_YES}</label> 
+			<label for="parse_url0"><input name="parse_url" id="parse_url0" value="0" <!-- IF MP_PARSE_URL == '0' -->checked="yes" <!-- ENDIF -->type="radio"> {L_NO}</label>
+
+		</dd>
+	</dl>
+<!-- ENDIF -->
+	</fieldset>
+	
+<br />
+
+
+<h3>{L_MP_STYLE_OPTIONS}</h3>
+
+
+	<fieldset>
+
+	<dl>
+		<dt><label for="bg_color">{L_MP_BGRND_COLOR}:</label></dt>
+		<dd>
+			<label for="bg_color"><select id="bg_color" name="bg_color">
+				<!-- BEGIN select_bg_color -->
+				<option value="{select_bg_color.VAL}" {select_bg_color.SEL}>{select_bg_color.LANG}</option>
+				<!-- END select_bg_color -->
+
+			</select></label>
+		</dd>
+	</dl>
+
+	<dl>
+		<dt><label for="bg_img_url">{L_MP_BGRND_IMAGE}:</label></dt>
+		<dd>
+			<label for="bg_img_url">
+				<input class="inputbox" type="text" id="bg_img_url" name="bg_img_url" value="<!-- IF MP_BG_IMG_URL -->{MP_BG_IMG_URL}<!-- ENDIF -->" />
+			</label>
+		</dd>
+	</dl>
+
+	<dl>
+		<dt><label for="bg_style">{L_MP_BGRND_STYLE}:</label></dt>
+		<dd>
+			<label for="bg_style"><select id="bg_style" name="bg_style">
+				<option value="repeat"<!-- IF MP_BG_STYLE == 'repeat' --> selected="yes"<!-- ENDIF -->>Repeat Full Page</option>
+				<option value="repeat-y"<!-- IF MP_BG_STYLE == 'repeat-y' --> selected="yes"<!-- ENDIF -->>Repeat Vertically</option>
+				<option value="repeat-x"<!-- IF MP_BG_STYLE == 'repeat-x' --> selected="yes"<!-- ENDIF -->>Repeat Horizontally</option>
+			</select></label>
+			<label for="bg_style_1"><select id="bg_style_fix" name="bg_style_fix">
+				<option value="fixed"<!-- IF MP_BG_STYLE_FIX == 'fixed' --> selected="yes"<!-- ENDIF -->>Fixed</option>
+				<option value="scroll"<!-- IF MP_BG_STYLE_FIX == 'scroll' --> selected="yes"<!-- ENDIF -->>Scroll</option>
+			</select></label>
+		</dd>
+	</dl>
+
+	<dl>
+		<dt><label for="fnt_size">{L_MP_FONT_SIZE}:</label></dt>
+		<dd>
+			<label for="fnt_size">
+			<select id="fnt_size" name="fnt_size">
+				<!-- BEGIN select_fnt_size -->
+				<option value="{select_fnt_size.VAL}" {select_fnt_size.SEL}>{select_fnt_size.LANG}</option>
+				<!-- END select_fnt_size -->
+			</select>
+			</label>
+		</dd>
+	</dl>
+
+	<dl>
+		<dt><label for="fnt_color">{L_MP_FONT_COLOR}:</label></dt>
+		<dd>
+			<label for="fnt_color"><select id="fnt_color" name="fnt_color">
+				<!-- BEGIN select_fnt_color -->
+				<option value="{select_fnt_color.VAL}" {select_fnt_color.SEL}>{select_fnt_color.LANG}</option>
+				<!-- END select_fnt_color -->
+			</select></label>
+		</dd>
+	</dl>
+
+	</fieldset>
+
+<br />
+<a id="editor" name="editor"></a>
+
+
+
+
+<h3>{L_MP_EDITOR}</h3>
+
+
+<fieldset class="fields1">
+
+<script type="text/javascript">
+// <![CDATA[
+	var form_name = 'postform';
+	var text_name = 'message';
+	var load_draft = false;
+	var upload = false;
+
+	// Define the bbCode tags
+	var bbcode = new Array();
+	var bbtags = new Array('[b]','[/b]','[i]','[/i]','[u]','[/u]','[quote]','[/quote]','[code]','[/code]','[list]','[/list]','[list=]','[/list]','[img]','[/img]','[url]','[/url]','[flash=]', '[/flash]','[size=]','[/size]'<!-- BEGIN custom_tags -->, {custom_tags.BBCODE_NAME}<!-- END custom_tags -->);
+	var imageTag = false;
+
+	// Helpline messages
+	var help_line = {
+		b: '{LA_BBCODE_B_HELP}',
+		i: '{LA_BBCODE_I_HELP}',
+		u: '{LA_BBCODE_U_HELP}',
+		q: '{LA_BBCODE_Q_HELP}',
+		c: '{LA_BBCODE_C_HELP}',
+		l: '{LA_BBCODE_L_HELP}',
+		o: '{LA_BBCODE_O_HELP}',
+		p: '{LA_BBCODE_P_HELP}',
+		w: '{LA_BBCODE_W_HELP}',
+		a: '{LA_BBCODE_A_HELP}',
+		s: '{LA_BBCODE_S_HELP}',
+		f: '{LA_BBCODE_F_HELP}',
+		e: '{LA_BBCODE_E_HELP}',
+		d: '{LA_BBCODE_D_HELP}'
+		<!-- BEGIN custom_tags -->
+			,cb_{custom_tags.BBCODE_ID}: '{custom_tags.A_BBCODE_HELPLINE}'
+		<!-- END custom_tags -->
+	}
+
+	var panels = new Array('options-panel', 'attach-panel', 'poll-panel');
+	var show_panel = 'options-panel';
+
+	function set_background(url)
+	{
+		document.postform.bg_img_url.value = url
+	}
+	
+// ]]>
+</script>
+
+
+<script type="text/javascript" src="{T_TEMPLATE_PATH}/editor.js"></script>
+
+
+<!-- IF S_BBCODE_ALLOWED -->
+<div id="colour_palette" style="display: none;">
+	<dl style="clear: left;">
+		<dt><label>{L_FONT_COLOR}:</label></dt>
+		<dd>
+		<script type="text/javascript">
+		// <![CDATA[
+			function change_palette()
+			{
+				dE('colour_palette');
+				e = document.getElementById('colour_palette');
+				
+				if (e.style.display == 'block')
+				{
+					document.getElementById('bbpalette').value = '{LA_FONT_COLOR_HIDE}';
+				}
+				else
+				{
+						document.getElementById('bbpalette').value = '{LA_FONT_COLOR}';
+				}
+			}
+
+			colorPalette('h', 15, 10);
+		// ]]>
+		</script>
+		</dd>
+	</dl>
+</div>
+
+<div id="format-buttons">
+	<input type="button" class="button2" accesskey="b" name="addbbcode0" value=" B " style="font-weight:bold; width: 30px" onclick="bbstyle(0)" title="{L_BBCODE_B_HELP}" />
+	<input type="button" class="button2" accesskey="i" name="addbbcode2" value=" i " style="font-style:italic; width: 30px" onclick="bbstyle(2)" title="{L_BBCODE_I_HELP}" />
+	<input type="button" class="button2" accesskey="u" name="addbbcode4" value=" u " style="text-decoration: underline; width: 30px" onclick="bbstyle(4)" title="{L_BBCODE_U_HELP}" />
+	<!-- IF S_BBCODE_QUOTE -->
+		<input type="button" class="button2" accesskey="q" name="addbbcode6" value="Quote" style="width: 50px" onclick="bbstyle(6)" title="{L_BBCODE_Q_HELP}" />
+	<!-- ENDIF -->
+	<input type="button" class="button2" accesskey="c" name="addbbcode8" value="Code" style="width: 40px" onclick="bbstyle(8)" title="{L_BBCODE_C_HELP}" />
+	<input type="button" class="button2" accesskey="l" name="addbbcode10" value="List" style="width: 40px" onclick="bbstyle(10)" title="{L_BBCODE_L_HELP}" />
+	<input type="button" class="button2" accesskey="o" name="addbbcode12" value="List=" style="width: 40px" onclick="bbstyle(12)" title="{L_BBCODE_O_HELP}" />
+	<input type="button" class="button2" accesskey="t" name="addlitsitem" value="[*]" style="width: 40px" onclick="bbstyle(-1)" title="{L_BBCODE_LISTITEM_HELP}" />
+	<!-- IF S_BBCODE_IMG -->
+		<input type="button" class="button2" accesskey="p" name="addbbcode14" value="Img" style="width: 40px" onclick="bbstyle(14)" title="{L_BBCODE_P_HELP}" />
+	<!-- ENDIF -->
+	<!-- IF S_LINKS_ALLOWED -->
+		<input type="button" class="button2" accesskey="w" name="addbbcode16" value="URL" style="text-decoration: underline; width: 40px" onclick="bbstyle(16)" title="{L_BBCODE_W_HELP}" />
+	<!-- ENDIF -->
+	<!-- IF S_BBCODE_FLASH -->
+		<input type="button" class="button2" accesskey="d" name="addbbcode18" value="Flash" onclick="bbstyle(18)" title="{L_BBCODE_D_HELP}" />
+	<!-- ENDIF -->
+	<select name="addbbcode20" onchange="bbfontstyle('[size=' + this.form.addbbcode20.options[this.form.addbbcode20.selectedIndex].value + ']', '[/size]');this.form.addbbcode20.selectedIndex = 2;" title="{L_BBCODE_F_HELP}">
+		<option value="50">{L_FONT_TINY}</option>
+		<option value="85">{L_FONT_SMALL}</option>
+		<option value="100" selected="selected">{L_FONT_NORMAL}</option>
+		<option value="150">{L_FONT_LARGE}</option>
+		<option value="200">{L_FONT_HUGE}</option>
+	</select>
+	<input type="button" class="button2" name="bbpalette" id="bbpalette" value="{L_FONT_COLOR}" onclick="change_palette();" title="{L_BBCODE_S_HELP}" />
+	<!-- BEGIN custom_tags -->
+		<input type="button" class="button2" name="addbbcode{custom_tags.BBCODE_ID}" value="{custom_tags.BBCODE_TAG}" onclick="bbstyle({custom_tags.BBCODE_ID})" title="{custom_tags.BBCODE_HELPLINE}" />
+	<!-- END custom_tags -->
+</div>
+<!-- ENDIF -->
+
+<!--
+<div id="smiley-box">
+<strong>{L_MP_INSERT}</strong><br /><br />
+	<input type="button" onclick="insert_text('[url={COMMENTS_URL}]{L_MP_COMMENTS}[/url]', true, false)" value="{L_MP_INSERT_COMMENT_LINK}"><br /><br />
+	<input type="button" onclick="insert_text('[MP_COMMENT_COUNT]', true, false)" value="{L_MP_INSERT_COMMENT_COUNT}"><br />
+</div>
+-->
+
+<div id="message-box">
+	<textarea name="message" id="message" rows="15" cols="76" tabindex="3" onselect="storeCaret(this);" onclick="storeCaret(this);" onkeyup="storeCaret(this);" class="inputbox">{MP_CONTENT}</textarea>
+</div>
+
+</fieldset>
+
+<!-- IF SHOW_UPLOADS -->
+<h3>{L_MP_UPLOADED_FILES}</h3>
+
+
+<fieldset>
+
+<!-- BEGIN uploads -->
+	<dl>
+		<dt><label for="image{uploads.ID}">{uploads.TITLE}:</label></dt>
+		<dd>
+			<label for="image{uploads.ID}">
+				<input type="button" onclick="insert_text('[IMG]{uploads.URL}[/IMG]', true, false)" value="{L_MP_INSERT_INLINE}">
+				<input type="button" onclick="set_background('{uploads.URL}')" value="{L_MP_MAKE_BACKGROUND}">
+			</label>
+		</dd>
+	</dl>
+<!-- END uploads -->
+
+</fieldset>
+<!-- ENDIF -->
+
+		<span class="corners-bottom"><span></span></span></div>
+</div>
+
+
+
+<fieldset class="submit-buttons">
+	<input type="hidden" name="page_id" value="{MP_MYPAGE_ID}" />
+	<input type="reset" name="reset" value="{L_RESET}" class="button2" />&nbsp; 
+	<input type="submit" name="submit" value="{L_SUBMIT}" class="button1" />
+	{S_FORM_TOKEN}
+</fieldset>
+
+
+
+
+</form>
+<!-- ENDIF -->
+
+<!-- INCLUDE ucp_footer.html -->
